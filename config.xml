@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "io.github.selloutink"
+        versionCode = "1" 
+        version     = "0.0.1" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>ListMaster</name>
+
+    <description>
+        Een app die je boodschappen op een innovatieve en verassende manier voor je bijhoudt. Gebruik deze app om papier te besparen, en nooit meer te hoeven zoeken naar boodschappen die je niet in huis hebt.
+    </description>
+
+    <author href="selloutink.wordpress.com" email="selloutink@gmail.com">
+        SelloutInk
+    </author>
+	<gap:platform name="android" />
+
+</widget>
