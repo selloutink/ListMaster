@@ -23,7 +23,7 @@
       permission on your app, which PhoneGap requires.
     -->
     <preference name="permissions" value="none"/>	
-	<preference name="phonegap-version" value="3.0.0" />
+	<preference name="phonegap-version" value="3.1.0" />
 
 
     <!-- to enable individual permissions use the following examples -->
