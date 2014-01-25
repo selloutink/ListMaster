@@ -35,7 +35,7 @@
 	<gap:platform name="android" />
 	
 	<!-- Plugins -->
-	<gap:plugin name="com.phonegap.plugins.barcodescanner" />
+	<gap:plugin name="BarcodeScanner" />
 
 	<!-- Permissions -->
 	<preference name="permissions" value="none"/>
