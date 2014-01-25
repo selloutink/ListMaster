@@ -28,7 +28,7 @@
 			<li><a href="#page2">Page Five</a></li>
             <li><a href="#page3">Page Three</a></li>
 			<li><a href="#page4">Page Four</a></li>
-            <button class="pressme"> Klik hier om te scannen! </button>
+            <button id="scan"> Klik hier om te scannen! </button>
 		</ul>		
 	</div>
 	<div data-role="footer">
@@ -77,19 +77,28 @@
 
 <!-- Eigen code hier (voor de gemakkelijkheid, later in eigen bestand!) -->
 <script type="text/javascript">
-$('.pressme').click(function(){
-	alert("scanner started");
-	// lanceer de barcodeScanner
-	cordova.plugins.barcodeScanner.scan(
-      function (result) {
-          alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
-      }, 
-      function (error) {
-          alert("Scanning failed: " + error);
-      }
-   );}
-   )
+$(document).on('pageshow', '#page_sample', function(e) {    
+        $('#scan').click(function () {
+            alert('scanning');
+
+            var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+            alert(scanner);
+
+            scanner.scan( function (result) { 
+                alert("We got a barcode\n" + 
+                "Result: " + result.text + "\n" + 
+                "Format: " + result.format + "\n" + 
+                "Cancelled: " + result.cancelled);  
+
+               alert("Scanner result: \n" +
+                    "text: " + result.text + "\n" +
+                    "format: " + result.format + "\n" +
+                    "cancelled: " + result.cancelled + "\n");
+                alert(result);
+            },function (error) { 
+                console.log("Scanning failed: ", error); 
+            });
+        });
+    });
 </script>
