@@ -16,6 +16,12 @@
     <author href="selloutink.wordpress.com" email="selloutink@gmail.com">
         SelloutInk
     </author>
+
+	<!-- Plugins die we nodig hebben voor de app -->
+	<gap:plugin name="com.phonegap.plugins.barcodescanner" /> <!-- Barcode scanner -->
+		
+
+	<!-- Platforms om op te exporteren (nu alleen android) -->
 	<gap:platform name="android" />
 
 </widget>

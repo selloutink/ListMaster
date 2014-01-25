@@ -24,6 +24,7 @@
 			<li><a href="#page2">Page Five</a></li>
             <li><a href="#page3">Page Three</a></li>
 			<li><a href="#page4">Page Four</a></li>
+            <button class="pressme"> Klik hier om te scannen! </button>
 		</ul>		
 	</div>
 	<div data-role="footer">
@@ -69,3 +70,21 @@
 
 </body>
 </html>
+
+<!-- Eigen code hier (voor de gemakkelijkheid, later in eigen bestand!) -->
+<script type="text/javascript">
+$('.pressme').click(function(){
+	// lanceer de barcodeScanner
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+      }, 
+      function (error) {
+          alert("Scanning failed: " + error);
+      }
+   );}
+   )
+</script>
