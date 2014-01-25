@@ -74,6 +74,7 @@
 <!-- Eigen code hier (voor de gemakkelijkheid, later in eigen bestand!) -->
 <script type="text/javascript">
 $('.pressme').click(function(){
+	alert("scanner started");
 	// lanceer de barcodeScanner
 	cordova.plugins.barcodeScanner.scan(
       function (result) {
