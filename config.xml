@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/3.1.0"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
         id          = "io.github.selloutink"
         versionCode = "10" 
         version     = "0.1.0" >
@@ -16,14 +16,17 @@
     <author href="https://build.phonegap.com" email="selloutink@gmail.com">
         Team Sellout Ink.
     </author>
-
+	
+	<!-- preferences -->
+	<preference name="phonegap-version" value="3.1.0" />
+	
+	
     <!--
       If you do not want any permissions to be added to your app, add the
       following tag to your config.xml; you will still have the INTERNET
       permission on your app, which PhoneGap requires.
     -->
-    <preference name="permissions" value="none"/>	
-	<preference name="phonegap-version" value="3.1.0" />
+    
 
 
     <!-- to enable individual permissions use the following examples -->
