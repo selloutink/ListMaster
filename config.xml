@@ -7,7 +7,7 @@
         versionCode = "1" 
         version     = "0.0.1" >
 
-<name>ListMaster</name>
+	<name>ListMaster</name>
 
     <description>
         Een app die je boodschappen op een innovatieve en verassende manier voor je bijhoudt. Gebruik deze app om papier te besparen, en nooit meer te hoeven zoeken naar boodschappen die je niet in huis hebt.
