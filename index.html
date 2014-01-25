@@ -80,27 +80,13 @@
 <!-- Eigen code hier (voor de gemakkelijkheid, later in eigen bestand!) -->
 <script type="text/javascript">  
 $(window).load(function(){  
-        $('#scan').click(function () {
-            alert('scanning');
-
-            var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-            alert(scanner);
-
-            scanner.scan( function (result) { 
-                alert("We got a barcode\n" + 
-                "Result: " + result.text + "\n" + 
-                "Format: " + result.format + "\n" + 
-                "Cancelled: " + result.cancelled);  
-
-               alert("Scanner result: \n" +
-                    "text: " + result.text + "\n" +
-                    "format: " + result.format + "\n" +
-                    "cancelled: " + result.cancelled + "\n");
-                alert(result);
-            },function (error) { 
-                console.log("Scanning failed: ", error); 
-            });
-		 }); 
+        $('#scan').click(function(){
+			window.plugins.barcodeScanner.scan( 
+			function(result) { 
+			if (result.cancelled){alert("the user cancelled the scan");}
+			else {alert("we got a barcode: " + result.text);}}, function(error){ 
+alert("scanning failed:" + error);
+});
+});
 });
 </script>
