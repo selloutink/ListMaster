@@ -16,39 +16,18 @@
     <author href="https://build.phonegap.com" email="selloutink@gmail.com">
         Team Sellout Ink.
     </author>
-	
-	<!-- preferences -->
-	<preference name="phonegap-version" value="3.1.0" />
-
-
-    <!-- to enable individual permissions use the following examples -->
-    <feature name="http://api.phonegap.com/1.0/battery"/>
-    <feature name="http://api.phonegap.com/1.0/camera"/>
-    <feature name="http://api.phonegap.com/1.0/contacts"/>
-    <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
-    <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
-    <feature name="http://api.phonegap.com/1.0/notification"/>
-	
-	<!-- Platforms -->
 	<gap:platform name="android" />
-	
-	<!-- Plugins -->
-	<gap:plugin name="BarcodeScanner" />
+	<gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 
-	<!-- Permissions -->
-	<preference name="permissions" value="none"/>
+    <feature name="http://api.phonegap.com/1.0/device" />
 
-    <!-- to enable individual permissions use the following examples -->
-    <feature name="http://api.phonegap.com/1.0/battery"/>
-    <feature name="http://api.phonegap.com/1.0/camera"/>
-    <feature name="http://api.phonegap.com/1.0/contacts"/>
-    <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
-    <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
-    <feature name="http://api.phonegap.com/1.0/notification"/>
 
+    <preference name="phonegap-version" value="3.1.0" />
+    <preference name="orientation"      value="default" />
+    <preference name="target-device"    value="universal" />
+    <preference name="fullscreen"       value="false" />
+    <preference name="webviewbounce"    value="false" />
+    <!-- content src="http://www.w3.org/2010/05/video/mediaevents.html" / -->
+</widget>
 
 </widget>
