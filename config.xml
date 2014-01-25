@@ -22,7 +22,9 @@
       following tag to your config.xml; you will still have the INTERNET
       permission on your app, which PhoneGap requires.
     -->
-    <preference name="permissions" value="none"/>
+    <preference name="permissions" value="none"/>	
+	<preference name="phonegap-version" value="3.0.0" />
+
 
     <!-- to enable individual permissions use the following examples -->
     <feature name="http://api.phonegap.com/1.0/battery"/>
