@@ -16,6 +16,7 @@
     <author href="https://build.phonegap.com" email="selloutink@gmail.com">
         Team Sellout Ink.
     </author>
+	
 	<gap:platform name="android" />
 	<gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 
@@ -27,7 +28,6 @@
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
     <preference name="webviewbounce"    value="false" />
-    <!-- content src="http://www.w3.org/2010/05/video/mediaevents.html" / -->
-</widget>
+
 
 </widget>
