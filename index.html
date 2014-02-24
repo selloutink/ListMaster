@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
+<title>ListMaster </title>
 <!-- Laad jQuery Mobile bestanden -->
 <script type="text/javascript" src="jquery-mobile/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="jquery-mobile/jquery.mobile-1.3.1.min.js"></script>
@@ -9,6 +10,7 @@
 
 <!-- laad Database lijst -->
 <script type="text/javascript" src="js/list.js"></script>
+<link rel="stylesheet" type="text/css" href="css/index.css">
 
 </head>
 <body>
@@ -16,18 +18,36 @@
 <!--######################################
 ###				Hoofdpagina		       ###
 ##########################################-->
-<div data-role="page" id="homepage">
-  <div data-role="header">
-    <h1>ListMaster App (v0.0.2)</h1>
-  </div>
+<div data-role="page" id="tutorial">
 
   <div data-role="content">
-    <p>Welkom bij Listmaster! Kies hieronder een optie.</p>
-    <a data-role="button" href="#scanpage">Ga scannen!</a>
+    <center>	<p class="head_1">Welkom bij </p>
+    <p class="head_main">ListMaster</p> 
+    <p class="head_content">De assisent voor je boodschappen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial2" data-role="button" data-theme="f"> Ga verder >> </a>
   </div>
+  
+    
+</div>
 
-  <div data-position="fixed" data-role="footer">
-    <h1>Footer Text</h1>
+<div data-role="page" id="tutorial2" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Lijst</p>
+    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_content dark">Bekijk op het hoofdscherm al je producten in een oogwenk.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Je bent er bijna! >> </a>
+  </div>
+</div> 
+
+<div data-role="page" id="tutorial3" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Voeg producten toe</p>
+    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_content dark">Voeg producten toe door ze te scannen of handmatig toe te voegen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Start de app! </a>
   </div>
 </div> 
 
