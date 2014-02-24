@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
+<meta charset="utf-8">
 <title>ListMaster </title>
 <!-- Laad jQuery Mobile bestanden -->
 <script type="text/javascript" src="jquery-mobile/jquery-1.6.4.min.js"></script>
@@ -25,11 +26,23 @@
   	<p class="headersign"> 
     <center> Boodschappenlijst </center>
     </p>
-    <input type="search" name="search-mini" id="search-mini" placeholder="Zoek Producten" data-mini="false" />
+    <input data-theme="b" type="search" name="search-mini" id="search-mini" placeholder="Zoek Producten" data-inline="true" />
   </div>
   </a>
-  <div data-role="content">
   
+  <div data-role="content">
+  	<ul data-role="listview">
+		<li>
+        <a href="getitem.html#id=0123">
+        	<img src="images/album-bb.jpg" class="ui-li-thumb">
+            <h3 class="ui-li-heading"> Hello World </h3>
+            <p class="ui-li-desc">Testdescription</p>
+        </a>
+        </li>
+		<li><a href="audi.html">Audi</a></li>
+		<li><a href="bmw.html">BMW</a></li>
+	</ul>
+    <a href="tutorial.html" data-role="button">CLICK HERE!</a>
   </div>
   
   
