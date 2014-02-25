@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
-<meta charset="utf-8">
 <title>ListMaster </title>
 <!-- Laad jQuery Mobile bestanden -->
 <script type="text/javascript" src="jquery-mobile/jquery-1.6.4.min.js"></script>
@@ -19,55 +18,43 @@
 <!--######################################
 ###				Hoofdpagina		       ###
 ##########################################-->
+<div data-role="page" id="tutorial">
 
-<div data-role="page" id="home" data-transition="slide">
-  <a href="#listpopup" data-rel="popup" data-transition="pop">
-  <div data-role="header" data-theme="a">
-  	<p class="headersign"> 
-    <center> Boodschappenlijst </center>
-    </p>
-    <input data-theme="b" type="search" name="search-mini" id="search-mini" placeholder="Zoek Producten" data-inline="true" />
-  </div>
-  </a>
-  
   <div data-role="content">
-  	<ul data-role="listview">
-		<li>
-        <a href="getitem.html#id=0123">
-        	<img src="images/album-bb.jpg" class="ui-li-thumb">
-            <h3 class="ui-li-heading"> Hello World </h3>
-            <p class="ui-li-desc">Testdescription</p>
-        </a>
-        </li>
-		<li><a href="audi.html">Audi</a></li>
-		<li><a href="bmw.html">BMW</a></li>
-	</ul>
-    <a href="tutorial.html" data-role="button">CLICK HERE!</a>
+    <center>	<p class="head_1">Welkom bij </p>
+    <p class="head_main">ListMaster</p> 
+    <p class="head_content">De assisent voor je boodschappen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial2" data-role="button" data-theme="f"> Ga verder >> </a>
   </div>
   
-  
-  <a href="#additem" data-position="fixed"data-rel="popup" data-inline="true" data-transition="slideup" data-position-to="origin">
- <span> <div data-role="footer" data-position="fixed" data-theme="d">
-  	<p class="addsign"><center>+ voeg producten toe</center> </p>
-  </div> </span>
-  </a>
- 
-<div data-role="popup" id="additem">  
-<div data-role="content">
-	<div data-role="controlgroup" data-type="horizontal">
-    <a data-role="button" id="startScan">Scan een product</a>
-    <a data-role="button" href="#lijstpage">Voeg handmatig een product toe</a>
-</div> 
+    
 </div>
+
+<div data-role="page" id="tutorial2" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Lijst</p>
+    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_content dark">Bekijk op het hoofdscherm al je producten in een oogwenk.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Je bent er bijna! >> </a>
+  </div>
+</div> 
+
+<div data-role="page" id="tutorial3" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Voeg producten toe</p>
+    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_content dark">Voeg producten toe door ze te scannen of handmatig toe te voegen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Start de app! </a>
+  </div>
 </div> 
 
 
 <!--#############################################
 ###				Voeg een product toe          ###
 #################################################-->
-
-
-
 <div data-role="page" id="scanpage">
   <div data-role="header">
     <h1>Voeg een product toe</h1>
@@ -95,7 +82,6 @@
     <h2>Lijst</h2>
     <div>
     <a id="addItem" data-role="button"> click Me </a>
-    
     </div>
   </div>
 
