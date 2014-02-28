@@ -32,3 +32,11 @@ background-size:cover;
 }
 .button_start{
 	}
+
+list_header,
+list_1,
+list_2,
+list_3 {
+display:inline;
+font-size:15pc;
+}
