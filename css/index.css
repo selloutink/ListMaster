@@ -37,6 +37,6 @@ div#list_header,
 div#list_1,
 div#list_2,
 div#list_3 {
-display:inline-block !important;
+display:inline !important;
 font-size:15pc !important;
 }
