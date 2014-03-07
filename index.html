@@ -20,69 +20,22 @@
 ###				Hoofdpagina		       ###
 ##########################################-->
 
-<div data-role="page" id="home" data-transition="slide">
-  <a href="#listpopup" data-rel="popup" data-transition="pop">
-  <div data-role="header" data-theme="a">
-  	<p class="headersign"> 
-    <center> Boodschappenlijst </center>
-    </p>
-    <input data-theme="b" type="search" name="search-mini" id="search-mini" placeholder="Zoek Producten" data-inline="true" />
-  </div>
-  </a>
-  
+<div data-role="page" id="home">
   <div data-role="content">
-  	<ul data-role="listview">
-		<li>
-          <img src="images/startbg.jpg" class="ui-li-thumb">
-           <div class="titel"><center><span class="top">&nbsp;</span><span class="naam">Tomatenketchup</span> <span class="bottom">&nbsp;</span></center></div>
-           <div class="voorraad"><center><span class="top"><small>Nog</small></span><span class="getal">5</span> <span class="bottom"><small>In voorraad</small></span></center></div>
-           <div class="houdbaarheid"><center><span class="top"><small>Houdbaar tot</small></span><span class="getal">7/3/14</span> <span class="bottom"><small>nog 5 dagen</small></span></center></div>
-           <div class="addonebutton"><a data-role="button" data-theme="g">+</a></div>
-           <div class="removeonebutton"><a data-role="button" data-theme="d">-</a></div>
-        </li>
-        
-        
-        
-		<li>
-          <img src="images/startbg.jpg" class="ui-li-thumb">
-           <div class="titel"><center><span class="top">&nbsp;</span><span class="naam">Tomatenketchup</span> <span class="bottom">&nbsp;</span></center></div>
-           <div class="voorraad"><center><span class="top"><small>Nog</small></span><span class="getal">5</span> <span class="bottom"><small>In voorraad</small></span></center></div>
-           <div class="houdbaarheid"><center><span class="top"><small>Houdbaar tot</small></span><span class="getal">7/3/14</span> <span class="bottom"><small>nog 5 dagen</small></span></center></div>
-           <div class="addonebutton"><a data-role="button" data-theme="g">+</a></div>
-           <div class="removeonebutton"><a data-role="button" data-theme="d">-</a></div>
-        </li>
-          
-          
-          <li>
-          <img src="images/startbg.jpg" class="ui-li-thumb">
-           <div class="titel"><center><span class="top">&nbsp;</span><span class="naam">Tomatenketchup</span> <span class="bottom">&nbsp;</span></center></div>
-           <div class="voorraad"><center><span class="top"><small>Nog</small></span><span class="getal">5</span> <span class="bottom"><small>In voorraad</small></span></center></div>
-           <div class="houdbaarheid"><center><span class="top"><small>Houdbaar tot</small></span><span class="getal">7/3/14</span> <span class="bottom"><small>nog 5 dagen</small></span></center></div>
-           <div class="addonebutton"><a data-role="button" data-theme="g">+</a></div>
-           <div class="removeonebutton"><a data-role="button" data-theme="d">-</a></div>
-        </li>
-	</ul>
-  </div>
+	<center><img src="http://placehold.it/200x200" alt="Logo"></center>
+  <center><p>ListMaster <br><small>Dé app die weet wat je in huis hebt</small></p>		</center>
   
+  <a data-role="button" href="index.html#editlijst">Bekijk je lijst</a>
+  <a data-role="button" href="index.html#alleproducten">Wat heb je in huis?</a>
+  <a data-role="button" href="#nieuwproductkeuze">Nieuwe producten toevoegen</a>
+  <a data-role="button" href="#boodschappenlijst">Boodschappen doen</a>  
   
-  <a href="#additem" data-position="fixed"data-rel="popup" data-inline="true" data-transition="slideup" data-position-to="origin">
- <span> <div data-role="footer" data-position="fixed" data-theme="d">
-  	<p class="addsign"><center>+ voeg producten toe</center> </p>
-  </div> </span>
-  </a>
- 
-  <div data-role="popup" id="additem">  
-    <div data-role="content">
-        <div data-role="controlgroup" data-type="horizontal">
-        <a data-role="button" id="startScan">Scan</a>
-        <a data-role="button" href="#lijstpage">Handmatig</a>
-    </div> 
   </div>
 </div> <!-- einde pagina -->
 
 
 <!--#############################################
-###				Voeg een product toe          ###
+###				Edit lijst                    ###
 #################################################-->
 
 
@@ -107,27 +60,104 @@
   </div>
 </div> 
 
+
+
+
+
+
+
+<!--###########################################################
+####                    Alle Producten                    #####
+###############################################################-->
+
+<div data-role="page" id="alleproducten">
+<div data-role="header" data-theme="a">
+  	<a href="#home" data-icon="arrow-l">Terug</a>
+  	<h1>In huis</h1>
+    <input data-theme="b" type="search" name="search-mini" id="search-mini" placeholder="Zoek Producten" data-inline="true" />
+  </div>
+  
+  <div data-role="content">
+  	<ul data-role="listview">
+       
+       
+       <li style="background-image:url('http://placehold.it/400x400'); background-size:contain; background-position:left; background-repeat:no-repeat;">
+           
+           <div class="titel"><span class="naam">Tomatenketchup</span></div>
+           <div class="voorraad"><center><span class="top"><small>Nog</small></span><span class="getal">5</span> <span class="bottom"><small>In huis</small></span></center></div>
+           <div class="houdbaarheid"><center><span class="top"><small>Houdbaar tot</small></span><span class="getal">7/3/14</span> <span class="bottom"><small>nog 5 dagen</small></span></center></div>
+           
+           <span class="buttonspan">
+           <div class="addonebutton"><a data-role="button" data-theme="g">+</a></div>
+           <div class="removeonebutton"><a data-role="button" data-theme="d">-</a></div>
+           </span>
+           <div class="clearfix"></div>
+       </li>
+
+        
+	</ul>
+  </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
 <!--#############################################
-###				Voeg een product toe          ###
+###				Nieuw Product (methode)       ###
 #################################################-->
-<div data-role="page" id="lijstpage">
+<div data-role="page" id="nieuwproductkeuze">
   <div data-role="header">
-    <h1>Toon de lijst</h1>
+    <a href="#home" data-icon="arrow-l">Terug</a>
+    <h1>Nieuw Product</h1>
   </div>
 
   <div data-role="content">
-    <h2>Lijst</h2>
+    <h2>Hoe wil je een nieuw product toevoegen?</h2>
     <div>
-    <a id="addItem" data-role="button"> click Me </a>
-    
+    <a href="#nieuwproducttype" data-role="button">Handmatig</a>
+    <center><small>of</small></center>
+    <a href="#nieuwproductscan"data-role="button">Scannen</a>
     </div>
   </div>
 
-  <div data-position="fixed" data-role="footer">
-    <h1>Footer Text</h1>
+	</div> 
+</div>
+ 
+<!--#############################################
+###				Nieuw Product (scannen)       ###
+#################################################-->
+<div data-role="page" id="nieuwproductscan">
+  <div data-role="header">
+    <a href="#nieuwproductkeuze" data-icon="arrow-l">Terug</a>
+    <h1>Scan Product</h1>
+  </div>
+
+  <div data-role="content">
+    <h2>Scanner aan het laden: </h2><h3>Houd de streepjescode straks duidelijk voor de camera van je mobieltje.</h3>
   </div>
 </div> 
+ 
+ 
+ 
+ <!--#############################################
+###				Nieuw Product (handmatig)       ###
+#################################################-->
+<div data-role="page" id="nieuwproducttype">
+  <div data-role="header">
+    <a href="#nieuwproductkeuze" data-icon="arrow-l">Terug</a>
+    <h1>Scan Product</h1>
+  </div>
 
+  <div data-role="content">
+    <h2>Handmatig invullen</h2>
+    <p>Vul hieronder de 13-cijferige streepjescode in. Ze zien er als volgt uit:</p>
+    <center><h3 style="display:inline;"> 87 227004 63115 </h3><small style="display:inline;">(Calve pindakaas)</small></center>
+    
+   <hr>
+   <input type="number" placeholder="Vul hier de streepjescode in">
+  </div>
+</div> 
  
 <!-- scripts -->
 <script type="text/javascript" src="cordova.js"></script>
@@ -140,3 +170,16 @@
 </script>
     </body>
 </html>
+
+
+<!--
+<a href="#additem" data-position="fixed" data-rel="popup" data-inline="false" data-transition="slideup" data-position-to="origin"><span><div data-role="footer" data-position="fixed" data-theme="d"><p class="addsign"><center>+ voeg producten toe</center> </p></div></span></a>
+ 
+  <div data-role="popup" id="additem">  
+    <div data-role="content">
+        <div data-role="controlgroup" data-type="horizontal">
+        <a data-role="button" id="startScan">Scan</a>
+        <a data-role="button" href="#lijstpage">Handmatig</a>
+    </div> 
+  </div>
+
