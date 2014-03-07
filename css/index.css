@@ -40,3 +40,32 @@ div#list_3 {
 display:inline !important;
 font-size:15pc !important;
 }
+
+.productTitle{
+	display:inline-block;
+	margin-left:20px;
+}
+.hoeveelheid{
+	display:inline-block;
+	margin-left:20px;
+	
+}
+
+.houdbaarheid, .voorraad, .titel{
+	display:inline-block;
+	margin-left:20px;
+}
+
+.houdbaarheid .top, .voorraad .top, .titel .top{
+	display:block;
+}
+.houdbaarheid .bottom, .voorraad .bottom, .titel .bottom{
+	display:block;
+}
+
+.addonebutton, .removeonebutton{
+	display:inline-block;
+	
+}
+
+
