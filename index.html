@@ -162,7 +162,13 @@ window.location.replace("tutorial.html");
 <script type="text/javascript" src="barcodescanner.js"></script>
 <script type="text/javascript" src="js/scan.js"></script>
  <!-- eigen code -->
-<script>inventoryItems();</script>
+ 
+<script>document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    // Now safe to use the PhoneGap API
+    inventoryItems();
+}</script>
     </body>
 </html>
 
