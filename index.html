@@ -7,13 +7,21 @@
 <script type="text/javascript" src="jquery-mobile/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="jquery-mobile/jquery.mobile-1.3.1.min.js"></script>
 <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.3.1.min.css">
-<link rel="stylesheet" href="jquery-mobile/jquery.mobile.flatui.css">
 
 <!-- laad Database lijst -->
 <script type="text/javascript" src="js/list.js"></script>
-<link rel="stylesheet" type="text/css" href="css/index.css">
 <script type="text/javascript" src="js/databaseacties.js"></script>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" href="jquery-mobile/jquery.mobile.flatui.css">
 
+
+<script type="text/javascript">
+var loggedinbefore = window.localStorage.getItem("loggedinbefore");
+if(!loggedinbefore == true)
+$("#home").live("pagecreate",function(){
+window.location.replace("tutorial.html");
+});
+</script>
 </head>
 <body>
 
@@ -27,7 +35,7 @@
   <center><p><h1>ListMaster</h1>Dé app die weet wat je in huis hebt</p></center>
   
   <a data-role="button" href="index.html#editlijst">Bekijk je lijst</a>
-  <a data-role="button" href="index.html#alleproducten">Wat heb je in huis?</a>
+  <a data-role="button" href="index.html#inhuis">Wat heb je in huis?</a>
   <a data-role="button" href="#nieuwproductkeuze">Nieuwe producten toevoegen</a>
   <a data-role="button" href="#boodschappenlijst">Boodschappen doen</a>  
   
@@ -68,10 +76,10 @@
 
 
 <!--###########################################################
-####                    Alle Producten                    #####
+####                    In Huis                           #####
 ###############################################################-->
 
-<div data-role="page" id="alleproducten">
+<div data-role="page" id="inhuis">
 <div data-role="header" data-theme="a">
   	<a href="#home" data-icon="arrow-l">Terug</a>
   	<h1>In huis</h1>
@@ -79,23 +87,8 @@
   </div>
   
   <div data-role="content">
-  	<ul data-role="listview">
-       
-       
-       <li style="background-image:url('http://placehold.it/400x400'); background-size:contain; background-position:left; background-repeat:no-repeat;">
-           
-           <div class="titel"><span class="naam">Tomatenketchup</span></div>
-           <div class="voorraad"><center><span class="top"><small>Nog</small></span><span class="getal">5</span> <span class="bottom"><small>In huis</small></span></center></div>
-           <div class="houdbaarheid"><center><span class="top"><small>Houdbaar tot</small></span><span class="getal">7/3/14</span> <span class="bottom"><small>nog 5 dagen</small></span></center></div>
-           
-           <span class="buttonspan">
-           <div class="addonebutton"><a data-role="button" data-theme="g">+</a></div>
-           <div class="removeonebutton"><a data-role="button" data-theme="d">-</a></div>
-           </span>
-           <div class="clearfix"></div>
-       </li>
-
-        
+  	<ul class="inventorycontainer" data-role="listview">
+      <!-- Hier worden de inhuis producten geprint -->
 	</ul>
   </div>
  </div>
@@ -116,10 +109,10 @@
   <div data-role="content">
     <h2>Een nieuw product toevoegen</h2>
     <p>Een product al een keer ingevoerd, maar een tijdje niet gekocht?</p>
-    <a href="#nieuwproductgeschiedenis" data-role="button">Voer een product toe uit de geschiedenis</a>
+    <a href="#nieuwproductgeschiedenis" data-role="button">Bekijk de geschiedenis</a>
     <hr>
     <div>
-    <p>Een product toevoegen die ik nog niet ken. <br><small>Of gewoon omdat je scannen zo leuk vind ;).</small></p>
+    <p>Een product voor de eerste keer toevoegen. <br><small>Of gewoon omdat je scannen zo leuk vindt ;).</small></p>
     <a href="#nieuwproducttype" data-role="button">Handmatig</a>
     <center><small>of</small></center>
     <a href="#nieuwproductscan"data-role="button">Scannen</a>
@@ -165,18 +158,11 @@
 </div> 
  
 <!-- scripts -->
-<script type="text/javascript">
-var loggedinbefore = window.localStorage.getItem("loggedinbefore");
-if(!loggedinbefore)
-$("#home").live("pagecreate",function(){
-$.mobile.changePage("tutorial.html");
-});
-</script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="barcodescanner.js"></script>
 <script type="text/javascript" src="js/scan.js"></script>
  <!-- eigen code -->
-
+<script>inventoryItems();</script>
     </body>
 </html>
 
