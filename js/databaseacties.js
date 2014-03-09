@@ -161,7 +161,7 @@ function changeInventory(plusminus, id, howmany){
 			} else if(plusminus == "-"){
 			final = row.hoeveelheid - howmany;}
 			//console.log("Final: " + final);
-	   		//console.log("Row.hoeveelheid: " + row.hoeveelheid);
+	   		///console.log("Row.hoeveelheid: " + row.hoeveelheid);
 
 		  var sql = "UPDATE alleproducten SET hoeveelheid=" + final + " WHERE id=" + id + ""; 
 			transaction.executeSql (sql, undefined, function (){
