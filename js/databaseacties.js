@@ -223,8 +223,19 @@ db.transaction (function (transaction)
 
 
 function getCode(ean){
-	var u = $.parseJSON('{"Brand":{"Id":351,"Name":"Unox"},"CategoryId":5,"Description":"","Id":5798,"ImageUrl":"http:\/\/syndicateplus.blob.core.windows.net\/resources\/products\/images\/634835794807955862_unox-sate.jpg","Manufacturer":{"Id":35,"Name":"Unilever Nederland B.V."},"Name":"Good Noodles Saté","Nutrition":[{"Id":1,"Name":"Energie","Units":"Kcal","Value":210.00},{"Id":2,"Name":"Suikers","Units":"g","Value":2.90},{"Id":3,"Name":"Vet","Units":"g","Value":11.00},{"Id":4,"Name":"Zout","Units":"g","Value":1.07},{"Id":5,"Name":"Verzadigd Vet","Units":"g","Value":4.70},{"Id":7,"Name":"Koolhydraten","Units":"g","Value":26.00},{"Id":8,"Name":"Eiwit","Units":"g","Value":3.10},{"Id":9,"Name":"Vezels","Units":"g","Value":0.40},{"Id":10,"Name":"Energie","Units":"Kj","Value":890.00}],"Retailers":[{"Id":6,"Name":"C1000"},{"Id":2,"Name":"Albert Heijn"},{"Id":17,"Name":"Jumbo"}],"SubCategoryId":69}');
-	nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+	if (!Date.now) {
+    Date.now = function() { return new Date().getTime(); };
+	}
 	
-	return u;
-}
+	$.getJSON("http://services.packetizer.com/nonce/?f=json",function(result){
+		console.log(result);
+	});
+
+	var date = Date.now;
+	var auth = "Authorization:Key='Um2TuBS8o_KYCFQ-YmCF6owOprQsNo4ki0qJ0jJJ7CtJmOyDTQhmAPjFHLiKxXC166beu80fqkg3Xcb8D__Yv1V05YO2kQgHAmWuS0Mccf7VZLkqpGhwNIZ5qkowkjRAl4r9eQZSLD9Ior_RbOA-WeHePLxS-2ShSRbglArYOuE=',Timestamp='" + date + "',Nonce='{nonce}',Signature='{signature}'";
+	//jQuery.ajax('http://api.syndicateplus.com/v0/products/product?ean=' + ean + ''[, settings ] );
+	
+	//nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+	
+	//return u;
+};
