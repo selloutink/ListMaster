@@ -49,28 +49,6 @@ function allItems(){
   });
 }
 
-function allItems(){
-	db.transaction (function (transaction) 
-  {
-    var sql = "SELECT * FROM alleproducten WHERE hoeveelheid > 0"
-    transaction.executeSql (sql, undefined, function (transaction, result)
-    { 
-      if (result.rows.length)
-      {
-        for (var i = 0; i < result.rows.length; i++) 
-        {
-          console.log(result.rows.item (i));
-        }
-      }
-      else
-      {
-       console.log("Geen Items");
-      }
-      
-    }, error);
-  });
-}
-
 
 //////////////////////////////////
 // Maak lijst met items///////////
@@ -136,7 +114,7 @@ function inventoryItems(){
       }
       else
       {
-       console.log("Geen Items");
+       console.log("Geen Items hier");
       }
     }, error);
   });
@@ -212,7 +190,7 @@ function firstTimeLogin()
 		// Flag the user no first time login
 		window.localStorage.setItem("loggedinbefore", true);
 		// Redirect the user to the main page
-		window.location.replace("index.html");	
+		window.location.href = "#home";	
 }
 
 function nieuwProduct(){
@@ -236,7 +214,7 @@ db.transaction (function (transaction)
 		"'Sellout Special'," +
 		"'Sellout ink makes games about stuff' ," +
 		"'http://placehold.it/100x100' ," +
-		"0 ," +
+		Math.floor((Math.random()*10)+1) +"," +
 		"0," +
 		"5," +
 		"1," +

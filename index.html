@@ -11,18 +11,13 @@
 <!-- laad Database lijst -->
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" href="jquery-mobile/jquery.mobile.flatui.css">
+<script type="text/javascript" src="js/databaseacties.js"></script>
 
 
 <script type="text/javascript">
 var loggedinbefore = window.localStorage.getItem("loggedinbefore");
-if(!loggedinbefore == true)
-$("#home").live("pagecreate",function(){
-window.location.replace("tutorial.html");
-    for(i = 0; i<50;i++){
-    nieuwProduct();
-    console.log("nieuwProduct Toegevoegd");
-    }
-});
+if(!loggedinbefore){
+window.location.href =  "#tutorial";}
 </script>
 </head>
 <body>
@@ -160,11 +155,50 @@ window.location.replace("tutorial.html");
 </div> 
  
 
+
+
+
+
+
+<!--######################################
+###				Hoofdpagina		       ###
+##########################################-->
+<div data-role="page" id="tutorial">
+
+  <div data-role="content">
+    <center><p class="head_1">Welkom bij </p>
+    <p class="head_main">ListMaster</p> 
+    <p class="head_content">De assisent voor je boodschappen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial2" data-role="button" data-theme="f"> Ga verder >> </a>
+  </div>
+  
+    
+</div>
+
+<div data-role="page" id="tutorial2" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Lijst</p>
+    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_content dark">Bekijk op het hoofdscherm al je producten in een oogwenk.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Je bent er bijna! >> </a>
+  </div>
+</div> 
+
+<div data-role="page" id="tutorial3" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Voeg producten toe</p>
+    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_content dark">Voeg producten toe door ze te scannen of handmatig toe te voegen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" onclick="firstTimeLogin()" data-role="button" data-theme="f"> Start de app! </a>
+  </div>
+</div> 
 <!-- scripts -->
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="barcodescanner.js"></script>
 <script type="text/javascript" src="js/scan.js"></script>
-<script type="text/javascript" src="js/databaseacties.js"></script>
  <!-- eigen code -->
  
 <script>document.addEventListener("deviceready", onDeviceReady, false);
