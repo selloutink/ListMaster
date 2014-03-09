@@ -18,6 +18,10 @@ var loggedinbefore = window.localStorage.getItem("loggedinbefore");
 if(!loggedinbefore == true)
 $("#home").live("pagecreate",function(){
 window.location.replace("tutorial.html");
+    for(i = 0; i<50;i++){
+    nieuwProduct();
+    console.log("nieuwProduct Toegevoegd");
+    }
 });
 </script>
 </head>
