@@ -91,7 +91,7 @@ function inventoryItems(){
 		  "background-image:url('" +
 		  row.imageurl +
 		  "'); background-size:contain; background-position:left; background-repeat:no-"+ 
-		  'repeat;">'+
+		  'repeat;" class="'+ row.id + '">'+
            "<div class='titel'>" +
 			   	"<span class='naam'>" +
 		  		row.naam +
@@ -118,20 +118,20 @@ function inventoryItems(){
 		   		"</center>" + 
 		   "</div>" +     
            "<span class='buttonspan'>" +
-           "<div class='addonebutton'><a data-role='button' data-theme='g'>+</a></div>" +
-           "<div class='removeonebutton'><a data-role='button' data-theme='d'>-</a></div>" +
+           "<div class='addonebutton'><a data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
+           "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
            "</span>" +
            "<div class='clearfix'></div>" +
        	   "</li>";
 			totalhtml = totalhtml + html;
-			console.log(i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i)
+			/*console.log(i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i)
 			console.log(row.imageurl + " url");
 			console.log(row.naam + " naam");
 			console.log(row.hoeveelheid + " hoeveelheid");
-			console.log(row.houdbaarheid + " houdbaarheid");
+			console.log(row.houdbaarheid + " houdbaarheid");*/
         }
 		
-	  $('ul.inventorycontainer').append(totalhtml).trigger('create').listview('refresh');
+	  $('ul.inventorycontainer').html(totalhtml).trigger('create').listview('refresh');
 		
       }
       else
@@ -145,22 +145,42 @@ function inventoryItems(){
 ///////////////////////////////////////////
 // Voeg een product toe in je inventaris //
 ///////////////////////////////////////////
-function allItems(){
-	db.transaction (function (transaction) 
+function changeInventory(plusminus, id, howmany){
+  if(!id){ id = -1}
+  if(!howmany){howmany = 1}
+  var final = 0;
+  db.transaction (function (transaction) 
   {
-    var sql = "SELECT * FROM alleproducten WHERE hoeveelheid > 0"
+    var sql = "SELECT hoeveelheid FROM alleproducten WHERE id=" + id + ""; 
     transaction.executeSql (sql, undefined, function (transaction, result)
     { 
       if (result.rows.length)
-      {
-        for (var i = 0; i < result.rows.length; i++) 
-        {
-          console.log(result.rows.item (i));
-        }
+	  {     var row = result.rows.item(0);
+			if(plusminus == "+"){
+			final = row.hoeveelheid + howmany;
+			} else if(plusminus == "-"){
+			final = row.hoeveelheid - howmany;}
+			//console.log("Final: " + final);
+	   		//console.log("Row.hoeveelheid: " + row.hoeveelheid);
+
+		  var sql = "UPDATE alleproducten SET hoeveelheid=" + final + " WHERE id=" + id + ""; 
+			transaction.executeSql (sql, undefined, function (){
+			$('li.' + id + ' .voorraad span.getal').html(final);
+			
+			if(final <= 0){
+			$('body').append(""+
+			"<div data-role='popup' id='errorgeenproduct'>" + 
+			"<p>This is a completely basic popup, no options set.<p>" +
+		 	"</div>");
+			$( "#errorgeenproduct" ).popup();
+			$( "#errorgeenproduct" ).popup( "open" );
+		    inventoryItems();
+			}
+			}, error);
       }
       else
       {
-       console.log("Geen Items");
+       alert("Fout, product niet gevonden");
       }
       
     }, error);
@@ -180,7 +200,7 @@ function dropTable(sqlcode){
     var sql = sqlcode;
     transaction.executeSql (sql, undefined, function ()
     { 
-      console.log (" >:) Database deleted.");
+      //console.log (" >:) Database deleted.");
     }, error);
   });
 }
