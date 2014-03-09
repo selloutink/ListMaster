@@ -12,6 +12,7 @@
 <!-- laad Database lijst -->
 <script type="text/javascript" src="js/list.js"></script>
 <link rel="stylesheet" type="text/css" href="css/index.css">
+<script type="text/javascript" src="js/databaseacties.js"></script>
 
 </head>
 <body>
@@ -164,14 +165,18 @@
 </div> 
  
 <!-- scripts -->
+<script type="text/javascript">
+var loggedinbefore = window.localStorage.getItem("loggedinbefore");
+if(!loggedinbefore)
+$("#home").live("pagecreate",function(){
+$.mobile.changePage("tutorial.html");
+});
+</script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="barcodescanner.js"></script>
 <script type="text/javascript" src="js/scan.js"></script>
-<script type="text/javascript" src="js/databaseacties.js"></script>
  <!-- eigen code -->
-<script type="text/javascript">
-	scancode.initialize();
-</script>
+
     </body>
 </html>
 

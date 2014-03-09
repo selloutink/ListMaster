@@ -1,69 +1,67 @@
 // Maak de database aan:
-var db = $.db("listmaster", "1.0", "Listmaster Database", 1024 * 1024);
-
+var db = openDatabase("listmaster", "1.0", "Listmaster Database", 1024 * 1024);
 // Maak de eerste tabel aan: Boodschappen
-if(!db.tables()){
-db.createTable({
-	name: "Alleproducten",
-	columns: 
-	[
-		"id INTEGER PRIMARY KEY",
-		"barcode INT",
-		"naam TEXT",
-		"merk TEXT",
-		"beschrijving TEXT",
-		"imageurl TEXT",
-		"hoeveelheid INT",
-		"aantalkeerinlijst INT",
-		"verversing INT",
-		"totaalkeerververst INT",
-		"houdbaarheid INT"
-	],
-	done: function() {
-		console.log("Eerste tabel aangemaakt!");
-	},
-	fail:function() {
-		console.log("Hmm... Er is iets misgegaan...");
-	}
-});
-} else {
-console.log("Database al aangemaakt");
+
+function createTable(){
+db.transaction (function (transaction) 
+  {
+    var sql = 
+		"CREATE TABLE alleproducten " +
+        " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+        "naam VARCHAR(255) NOT NULL, " + 
+        "barcode VARCHAR(13) NOT NULL," +
+		"merk VARCHAR(255) NOT NULL," +
+		"beschrijving TEXT NOT NULL," +
+		"imageurl VARCHAR(255) NOT NULL," +
+		"hoeveelheid SMALLINT NOT NULL," +
+		"aantalkeerinlijst SMALLINT NOT NULL," +
+		"verversing SMALLINT NOT NULL," +
+		"totaalkeerververst SMALLINT NOT NULL," +
+		"houdbaarheid SMALLINT NOT NULL)"
+    transaction.executeSql (sql, undefined, function ()
+    { 
+      console.log ("Table created");
+    }, error);
+  });
+};
+//////////////////////////////////
+// Krijg alle items///////////////
+//////////////////////////////////
+function allItems(){
+	db.transaction (function (transaction) 
+  {
+    var sql = "SELECT * FROM alleproducten"
+    transaction.executeSql (sql, undefined, function ()
+    { 
+      
+    }, error);
+  });
 }
 
 
-function createRecord(){
-db.insert("Alleproducten", {
-    data: {
-        barcode: 8722220011235,
-        naam: "Sergeant Pepper",
-		merk: "Selloutink&CO",
-		beschrijving: "Dit is een zeer mooi voorbeeldproduct",
-		imageurl: "placehold.it/100x100",
-		hoeveelheid: 1,
-		houdbaarheid: 5,
-    },
-    done: function () {
-        console.log("Yay!  I created a product!");
-    },
-    fail: function () {
-        console.log("Something went wrong....");
-    }
-});
+
+function error (transaction, err) 
+{
+  console.log("DB error : " + err.message);
+  return false;
 }
 
+function dropTable(sqlcode){
+  db.transaction (function (transaction) 
+  {
+    var sql = sqlcode;
+    transaction.executeSql (sql, undefined, function ()
+    { 
+      console.log (" >:) Database deleted.");
+    }, error);
+  });
+};
 
-function selectProducts(){
-	db.criteria("Alleproducten").list(
-    function (transaction, results) {
-        var rows = results.rows;
 
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows.item(i);
-            console.log(row.naam + " " + row.name + " [" + row.barcode + "]");
-        }
-    },
-    function (transaction, error) {
-        console.log("Something went wrong....");
-    }
-);
+function firstTimeLogin(){
+		createTable();
+		// Flag the user no first time login
+		window.localStorage.setItem("loggedinbefore", true);
+		// Redirect the user to the main page
+		window.location.replace("index.html");	
 }
