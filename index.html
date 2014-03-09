@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
 <meta charset="utf-8">
 <title>ListMaster </title>
@@ -161,7 +161,7 @@ window.location.href =  "#tutorial";}
 
 
 <!--######################################
-###				Hoofdpagina		       ###
+###				Tutorials   	       ###
 ##########################################-->
 <div data-role="page" id="tutorial">
 
@@ -195,6 +195,29 @@ window.location.href =  "#tutorial";}
     <a data-transition="slide" class="button_start" onclick="firstTimeLogin()" data-role="button" data-theme="f"> Start de app! </a>
   </div>
 </div> 
+
+
+<!--###########################
+##### ERRORS ##################
+###############################-->
+<!-- <div data-role="popup" data-theme="a" id="errorgeenproduct">	
+  <div data-role="header">
+  	<h1>0 stuks over</h1>
+  </div>
+  <div data-role="content">
+    <center><h2>Op het boodschappenlijstje zetten?</h2>
+    <p>Wil je dat dit product in je boodschappenlijstje komt?</p></center>
+	<div class="inline">    	
+    	<a data-role="button" data-theme="g" href="" onclick="return true; $( '#errorgeenproduct' ).popup( 'close' );">Ja</a>
+    	<a data-role="button" data-theme="d" href="">Nee</a>
+    	<a data-role="button" data-theme="f" href="">Annuleren</a>
+    </div>
+  </div>
+</div> -->
+ 
+		
+		
+		
 <!-- scripts -->
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="barcodescanner.js"></script>
@@ -205,6 +228,8 @@ window.location.href =  "#tutorial";}
 
 function onDeviceReady() {
     // Now safe to use the PhoneGap API
+    window.plugin.statusbarOverlay.hide();
+    window.plugin.statusbarOverlay.hide();
     inventoryItems();
 }</script>
     

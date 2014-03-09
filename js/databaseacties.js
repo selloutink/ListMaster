@@ -65,26 +65,23 @@ function inventoryItems(){
         for (var i = 0; i < result.rows.length; i++) 
         {
 		  var row = result.rows.item(i);
-          var html = '<li style="' +
-		  "background-image:url('" +
-		  row.imageurl +
-		  "'); background-size:contain; background-position:left; background-repeat:no-"+ 
-		  'repeat;" class="'+ row.id + '">'+
+          var html = '<li background-size:contain; background-position:left; background-repeat:no-repeat;" class="'+ row.id + '">'+
+			 "<img src ='" +row.imageurl + "' class='nothumb'/>" +
+			  "<center>" +
            "<div class='titel'>" +
 			   	"<span class='naam'>" +
 		  		row.naam +
 				"</span>" +
 		   "</div>" +
            "<div class='voorraad'>" +
-		   		"<center>" +
 			   		"<span class='top'><small>Nog</small></span>" +
 					"<span class='getal'>" +
 					row.hoeveelheid +
 					"</span> " +
 					"<span class='bottom'><small>In huis</small></span>" +
-				"</center>" +
 		   "</div>" +
-           "<div class='houdbaarheid'>" +
+			  "</center>" +
+           /*"<div class='houdbaarheid'>" +
 			   	"<center>" +
 			   		"<span class='top'><small>Houdbaar tot</small></span>" +
 					"<span class='getal'>" +
@@ -94,10 +91,10 @@ function inventoryItems(){
 					row.houdbaarheid +
 		   " dagen</small></span>" +
 		   		"</center>" + 
-		   "</div>" +     
+		   "</div>" +     */
            "<span class='buttonspan'>" +
-           "<div class='addonebutton'><a data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
-           "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
+			"<div class='addonebutton'><a data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
+		   "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
            "</span>" +
            "<div class='clearfix'></div>" +
        	   "</li>";
@@ -145,15 +142,12 @@ function changeInventory(plusminus, id, howmany){
 			transaction.executeSql (sql, undefined, function (){
 			$('li.' + id + ' .voorraad span.getal').html(final);
 			
-			if(final <= 0){
-			$('body').append(""+
-			"<div data-role='popup' id='errorgeenproduct'>" + 
-			"<p>This is a completely basic popup, no options set.<p>" +
-		 	"</div>");
-			$( "#errorgeenproduct" ).popup();
-			$( "#errorgeenproduct" ).popup( "open" );
+			/*if(final <= 0){
+				$( "#errorgeenproduct" ).popup();
+				$( "#errorgeenproduct" ).popup( "open" );
 		    inventoryItems();
-			}
+			}*/
+				inventoryItems();
 			}, error);
       }
       else
@@ -193,7 +187,7 @@ function firstTimeLogin()
 		window.location.href = "#home";	
 }
 
-function nieuwProduct(){
+function nieuwProduct(naam,barcode,merk,beschrijving,imageurl,hoeveelheid,aantalkeerinlijst,verversing,totaalkeerververst,houdbaarheid){
 db.transaction (function (transaction) 
   {
     var sql = 
@@ -209,16 +203,16 @@ db.transaction (function (transaction)
 		"totaalkeerververst ," +
 		"houdbaarheid)" +
 		"VALUES (" +
-		"'Mr Dirty Laundry'," +
-		"0118999881999," +
-		"'Sellout Special'," +
-		"'Sellout ink makes games about stuff' ," +
-		"'http://placehold.it/100x100' ," +
-		Math.floor((Math.random()*10)+1) +"," +
-		"0," +
-		"5," +
-		"1," +
-		"3) ";
+		 "'" + naam + "'," +
+		 "'" + barcode + "'," +
+		 "'" + merk + "'," +
+		 "'" + beschrijving + "'," +
+		 "'" + imageurl + "'," +
+		 "'" + hoeveelheid + "'," +
+		 "'" + aantalkeerinlijst + "'," +
+		 "'" + verversing + "'," +
+		 "'" + totaalkeerververst + "'," +
+		 "'" + houdbaarheid + "') ";
 	  
     transaction.executeSql (sql, undefined, function ()
     { 
@@ -226,3 +220,11 @@ db.transaction (function (transaction)
     }, error);
   });
 };
+
+
+function getCode(ean){
+	var u = $.parseJSON('{"Brand":{"Id":351,"Name":"Unox"},"CategoryId":5,"Description":"","Id":5798,"ImageUrl":"http:\/\/syndicateplus.blob.core.windows.net\/resources\/products\/images\/634835794807955862_unox-sate.jpg","Manufacturer":{"Id":35,"Name":"Unilever Nederland B.V."},"Name":"Good Noodles Saté","Nutrition":[{"Id":1,"Name":"Energie","Units":"Kcal","Value":210.00},{"Id":2,"Name":"Suikers","Units":"g","Value":2.90},{"Id":3,"Name":"Vet","Units":"g","Value":11.00},{"Id":4,"Name":"Zout","Units":"g","Value":1.07},{"Id":5,"Name":"Verzadigd Vet","Units":"g","Value":4.70},{"Id":7,"Name":"Koolhydraten","Units":"g","Value":26.00},{"Id":8,"Name":"Eiwit","Units":"g","Value":3.10},{"Id":9,"Name":"Vezels","Units":"g","Value":0.40},{"Id":10,"Name":"Energie","Units":"Kj","Value":890.00}],"Retailers":[{"Id":6,"Name":"C1000"},{"Id":2,"Name":"Albert Heijn"},{"Id":17,"Name":"Jumbo"}],"SubCategoryId":69}');
+	nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+	
+	return u;
+}
