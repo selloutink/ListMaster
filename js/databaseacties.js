@@ -247,12 +247,12 @@ function getCode(ean){
 		  crossDomain: true,
           success: function() { alert('hello!'); },
           error: function() { alert('boo!'); },
-          beforeSend: function(xhr){$.mobile.loading('show');  xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');},
+          beforeSend: function(xhr){$.mobile.loading('show'); setHeader(xhr); },
 		  complete: function(){$.mobile.loading('hide');}
         });
 
       function setHeader(xhr) {
-       
+       xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
       }
 }
 
