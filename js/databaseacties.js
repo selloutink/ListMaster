@@ -181,8 +181,11 @@ function dropTable(sqlcode){
 function firstTimeLogin()
 {
 		createTable();
+		var deviceID = device.uuid;
+	    var nonce = "selloutink_" + device.uuid + Math.floor(Math.random() * 99999) + "";
 		// Flag the user no first time login
 		window.localStorage.setItem("loggedinbefore", true);
+		window.localStorage.setItem("nonce", nonce);
 		// Redirect the user to the main page
 		window.location.href = "#home";	
 }
@@ -223,19 +226,34 @@ db.transaction (function (transaction)
 
 
 function getCode(ean){
-	if (!Date.now) {
-    Date.now = function() { return new Date().getTime(); };
-	}
-	
-	$.getJSON("http://services.packetizer.com/nonce/?f=json",function(result){
-		console.log(result);
-	});
+	ean = "8722700463115";
+	var privatekey = "Um2TuBS8o_KYCFQ-YmCF6owOprQsNo4ki0qJ0jJJ7CtJmOyDTQhmAPjFHLiKxXC166beu80fqkg3Xcb8D__Yv1V05YO2kQgHAmWuS0Mccf7VZLkqpGhwNIZ5qkowkjRAl4r9eQZSLD9Ior_RbOA-WeHePLxS-2ShSRbglArYOuE=";
+	var httpverb = "GET";
+	var requesturl = "http://api.syndicateplus.com/v1/products/product";
+	var querystring = "ean=" + ean;
+	var secret = "sY76ezrweHk3VXvyWLJBHkNdh4a5zVXLRsEYj9R9yxPARkCK1Pvdz6Py4RAYSqjLPZMKt3ESmoRX6CxKlookQQzFSjPutLmSHg4wt-Oc2ghQXZaV-L7PILRj8pohInkbeFiJ4JL0o1eiVEd13q0cuPFGyYAaU8G60VAFpW0LRrM=";
+	var nonce = window.localStorage.getItem("nonce");
+	var timestamp = Date.now();
 
-	var date = Date.now;
-	var auth = "Authorization:Key='Um2TuBS8o_KYCFQ-YmCF6owOprQsNo4ki0qJ0jJJ7CtJmOyDTQhmAPjFHLiKxXC166beu80fqkg3Xcb8D__Yv1V05YO2kQgHAmWuS0Mccf7VZLkqpGhwNIZ5qkowkjRAl4r9eQZSLD9Ior_RbOA-WeHePLxS-2ShSRbglArYOuE=',Timestamp='" + date + "',Nonce='{nonce}',Signature='{signature}'";
-	//jQuery.ajax('http://api.syndicateplus.com/v0/products/product?ean=' + ean + ''[, settings ] );
 	
+	// create Signature:
+	var str = secret + httpverb + requesturl + querystring + nonce + timestamp;
+	str = $().crypt({method: "sha1", source: str });
+ 	
+      $.ajax({
+          url: 'http://api.syndicateplus.com/v1/products/product/',
+          type: 'GET',
+          dataType: 'json',
+          success: function() { alert('hello!'); },
+          error: function() { alert('boo!'); },
+          beforeSend: setHeader
+        });
+
+      function setHeader(xhr) {
+        xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
+      }
+}
+
 	//nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
 	
 	//return u;
-};
