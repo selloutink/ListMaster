@@ -31,7 +31,11 @@
     <preference name="webviewbounce"    value="false" />
 	<preference name="splashscreen" value="foo" />
 	<access origin="*" />
-
+	
+	<icon src="images/logo.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="xhdpi" />
 
 
 </widget>
