@@ -243,7 +243,7 @@ function getCode(ean){
       $.ajax({
           url: 'http://api.syndicateplus.com/v1/products/product/',
           type: 'GET',
-          dataType: 'json',
+          dataType: 'jsonp',
 		  crossDomain: true,
           success: function() { alert('hello!'); },
           error: function() { alert('boo!'); },
