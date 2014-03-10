@@ -244,13 +244,15 @@ function getCode(ean){
           url: 'http://api.syndicateplus.com/v1/products/product/',
           type: 'GET',
           dataType: 'json',
+		  crossDomain: true,
           success: function() { alert('hello!'); },
           error: function() { alert('boo!'); },
-          beforeSend: setHeader
+          beforeSend: function(xhr){$.mobile.loading('show');  xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');},
+		  complete: function(){$.mobile.loading('hide');}
         });
 
       function setHeader(xhr) {
-        xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
+       
       }
 }
 
