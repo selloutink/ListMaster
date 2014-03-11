@@ -59,7 +59,7 @@ var app = {
           if(result.cancelled == true){return;}
           if (result.format == "EAN_13"){
           	// YES EEN KANSHEBBER
-            getcode(result.text);
+            getCode(result.text);
           }
            console.log("Scanner result: \n" +
                 "text: " + result.text + "\n" +
