@@ -224,7 +224,7 @@ db.transaction (function (transaction)
 
 
 function getCode(ean){
-	ean = "8722700463115";
+	/*ean = "8722700463115";
 	var privatekey = "Um2TuBS8o_KYCFQ-YmCF6owOprQsNo4ki0qJ0jJJ7CtJmOyDTQhmAPjFHLiKxXC166beu80fqkg3Xcb8D__Yv1V05YO2kQgHAmWuS0Mccf7VZLkqpGhwNIZ5qkowkjRAl4r9eQZSLD9Ior_RbOA-WeHePLxS-2ShSRbglArYOuE=";
 	var httpverb = "GET";
 	var requesturl = "http://api.syndicateplus.com/v1/products/product";
@@ -251,9 +251,35 @@ function getCode(ean){
 
       function setHeader(xhr) {
        xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
-      }
+      }*/
+	switch(ean)
+	{
+	case "8710452210231":
+			var u = jQuery.parseJSON( ' {"Allergens": [], "Brand": { "Description": null, "Id": "0575f6ec-211c-41bb-80cf-c6bab9a5220b", "ManufacturerId": "00000000-0000-0000-0000-000000000000", "Name": "Autodrop", "Website": null }, "Description": "Machtige amerikaan vol pk\'s. Lekker breeduit over de weg zoeven met een draaikolk in de tank. De bosvruchtrode cadillacs bevat 3 smaken: aardbei, cassis en kers.", "Id": "5b94056a-8fcc-4bb4-b09f-330f5a26abee", "ImageUrl": "http://syndicateplus.blob.core.windows.net/resources/products/images/autodrop_cadillacs.jpg", "Ingredients": "", "Manufacturer": { "Description": null, "Id": "32381894-e374-4dae-8172-721258cfd5db", "Name": "Concorp Brands N.V.", "Website": null }, "Name": "Bosvruchten Cadillacs", "Nutrients": [] }' );
+			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+			break;
+	case "5449000009500":
+			var u = jQuery.parseJSON( '{ "Allergens": [], "Brand": { "Description": null, "Id": "d52239cb-1761-4138-94e4-02a84a3ce0c8", "ManufacturerId": "00000000-0000-0000-0000-000000000000", "Name": "Coca Cola", "Website": null }, "Description": "Coca Cola", "Id": "3f163247-c1a6-4685-aa90-823b5f96a527", "ImageUrl": "http://www2.woolworthsonline.com.au/Content/ProductImages/big/038121.jpg", "Ingredients": "", "Manufacturer": { "Description": null, "Id": "3c839208-e692-4403-9cba-1b9d26189289", "Name": "Coca Cola Nederland B.V.", "Website": null }, "Name": "Cola cherry blik 33 cl", "Nutrients": [] }' );
+			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+			break;
+	case "5410041054309":
+			var u = jQuery.parseJSON( '{ "Allergens": [], "Brand": { "Description": null, "Id": "5d838d4b-0eab-4c36-ba09-100719bac18e", "ManufacturerId": "00000000-0000-0000-0000-000000000000", "Name": "Lu", "Website": null }, "Description": "", "Id": "62a89897-f580-44b5-9d5c-531b96e1b734", "ImageUrl": "http://syndicateplus.blob.core.windows.net/resources/products/images/lu_bastogne_original.jpg", "Ingredients": "", "Manufacturer": { "Description": null, "Id": "2e7db1ee-98df-4984-ac11-69443359d0e3", "Name": "Koninklijke Verkade N.V.", "Website": null }, "Name": "Bastogne", "Nutrients": [] }' );
+			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+			break;
+		case "":
+			var u = jQuery.parseJSON( '{ "Allergens": [], "Brand": { "Description": null, "Id": "5e9d8454-4dd7-4b16-92e6-69a657e9e217", "ManufacturerId": "00000000-0000-0000-0000-000000000000", "Name": "Hertog", "Website": null }, "Description": "", "Id": "fa949514-3fd4-472f-a29a-d8feee65b28d", "ImageUrl": "http://www.unilever.nl/Images/Vanille-Rond-450x450_tcm164-313540.jpg", "Ingredients": "", "Manufacturer": { "Description": null, "Id": "ecfd039c-7191-47fb-8761-5a7c9bde8584", "Name": "Unilever Nederland B.V.", "Website": null }, "Name": "Slagroomijs bak 900 ml", "Nutrients": [] }' );
+			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+			break;		
+	case "":
+			var u = jQuery.parseJSON( '{ "Allergens": [], "Brand": { "Description": null, "Id": "e56dd92c-4475-44cb-aba3-09bee09a797c", "ManufacturerId": "00000000-0000-0000-0000-000000000000", "Name": "Chocomel", "Website": null }, "Description": "", "Id": "06d938ce-8ddb-4b6a-912d-7aef19e08e2f", "ImageUrl": "http://syndicateplus.blob.core.windows.net/resources/products/images/634765679126350000_chocomel_vol.jpg", "Ingredients": "gedeeltelijke afgeroomde melk, suiker, cacao (1,9%), stabilisator: carregeen", "Manufacturer": { "Description": null, "Id": "9da25934-5f77-434f-ad27-48305eef0946", "Name": "Friesland Campina N.V.", "Website": null }, "Name": "Chocomel", "Nutrients": [] }' );
+			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+			break;
+	case "":
+			var u = jQuery.parseJSON( '{ "Allergens": [], "Brand": { "Description": null, "Id": "6ef7ff73-dd85-4884-9beb-23e3bc56b692", "ManufacturerId": "00000000-0000-0000-0000-000000000000", "Name": "Conimex", "Website": null }, "Description": "", "Id": "695e44f2-9131-4f62-89d4-ad4b802524ec", "ImageUrl": "http://www.vettefeiten.nl/images/Conimex_KroepoekNaturelA_pv.jpg", "Ingredients": "", "Manufacturer": { "Description": null, "Id": "ecfd039c-7191-47fb-8761-5a7c9bde8584", "Name": "Unilever Nederland B.V.", "Website": null }, "Name": "Kroepoek gebakken groot naturel zak 80 gram", "Nutrients": [] }' );
+			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+			break;
 }
 
-	//nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+	//
 	
 	//return u;
