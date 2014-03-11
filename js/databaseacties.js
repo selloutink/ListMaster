@@ -279,6 +279,8 @@ function getCode(ean){
 			nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
 			break;
 }
+	
+}
 
 	//
 	
