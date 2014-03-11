@@ -181,10 +181,8 @@ function dropTable(sqlcode){
 function firstTimeLogin()
 {
 		createTable();
-		var deviceID = device.uuid;
-	    var nonce = "selloutink_" + device.uuid + Math.floor(Math.random() * 99999) + "";
+  		
 		// Flag the user no first time login
-		window.localStorage.setItem("loggedinbefore", true);
 		window.localStorage.setItem("nonce", nonce);
 		// Redirect the user to the main page
 		window.location.href = "#home";	
