@@ -413,7 +413,7 @@ function listItems(){
 		   		"</center>" + 
 		   "</div>" +     */
            "<span class='buttonspan'>" +
-			"<div class='addonebutton'><a data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
+			"<div class='addonebutton'><a href='#inlijst' data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
 		   "<div class='hidden removeonebutton'><a data-role='button' onclick='" + 'changeList("+",' + row.id + ");' data-theme='d'>-</a></div>" +
            "</span>" +
            "<div class='clearfix'></div>" +
