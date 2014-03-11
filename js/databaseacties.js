@@ -224,7 +224,7 @@ function changeList(plusminus, id, howmany){
 				$( "#errorgeenproduct" ).popup( "open" );
 		    inventoryItems();
 			}*/
-				inventoryItems();
+				listItems();
 			}, error);
       }
       else
