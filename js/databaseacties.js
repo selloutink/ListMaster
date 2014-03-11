@@ -218,6 +218,9 @@ db.transaction (function (transaction)
     transaction.executeSql (sql, undefined, function ()
     { 
       console.log ("Product Toegevoegd");
+	$('h1.scannedttitle').html(naam);
+	$('.scannedimage').src(imageurl);
+	  inventoryItems();
     }, error);
   });
 };
