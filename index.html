@@ -28,13 +28,12 @@ window.location.href =  "#tutorial";}
 
 <div data-role="page" id="home">
   <div data-role="content">
-	<center><img src="http://placehold.it/200x200" alt="Logo"></center>
+	<center><img src="images/logo.png" width="200" height="200" alt="Logo"></center>
   <center><p><h1>ListMaster</h1>Dé app die weet wat je in huis hebt</p></center>
   
-  <a data-role="button" href="index.html#editlijst">Bekijk je lijst</a>
   <a data-role="button" href="index.html#inhuis">Wat heb je in huis?</a>
   <a data-role="button" href="#nieuwproductkeuze">Nieuwe producten toevoegen</a>
-  <a data-role="button" href="#boodschappenlijst">Boodschappen doen</a>  
+  <a data-role="button" href="index.html#inlijst">Boodschappen doen</a>  
   
   </div>
 </div> <!-- einde pagina -->
@@ -80,7 +79,6 @@ window.location.href =  "#tutorial";}
 <div data-role="header" data-theme="a">
   	<a href="#home" data-icon="arrow-l">Terug</a>
   	<h1>In huis</h1>
-    <input data-theme="b" type="search" name="search-mini" id="search-mini" placeholder="Zoek Producten" data-inline="true" />
   </div>
   
   <div data-role="content">
@@ -90,7 +88,18 @@ window.location.href =  "#tutorial";}
   </div>
  </div>
  
- 
+ <div data-role="page" id="inlijst">
+<div data-role="header" data-theme="a">
+  	<a href="#home" data-icon="arrow-l">Terug</a>
+  	<h1>Boodschappenlijst</h1>
+  </div>
+  
+  <div data-role="content">
+  	<ul class="inventorycontainerlijst" data-role="listview">
+      <!-- Hier worden de inlijst producten geprint -->
+	</ul>
+  </div>
+ </div>
  
  
  
@@ -105,13 +114,13 @@ window.location.href =  "#tutorial";}
 	
   <div data-role="content">
     <h2>Een nieuw product toevoegen</h2>
-    <p>Een product al een keer ingevoerd, maar een tijdje niet gekocht?</p>
+    <!--<p>Een product al een keer ingevoerd, maar een tijdje niet gekocht?</p>
     <a href="#nieuwproductgeschiedenis" data-role="button">Bekijk de geschiedenis</a>
     <hr>
-    <div>
-    <p>Een product voor de eerste keer toevoegen. <br><small>Of gewoon omdat je scannen zo leuk vindt ;).</small></p>
-    <a href="#nieuwproducttype" data-role="button">Handmatig</a>
-    <center><small>of</small></center>
+    <div> -->
+    <p>Klik hieronder om te scannen. Je product wordt automatisch opgezocht in de database. <small>Mede mogelijkgemaakt door SyndicatePlus</small></p>
+ <!--   <a href="#nieuwproducttype" data-role="button">Handmatig</a>
+    <center><small>of</small></center> -->
     <a href="#nieuwproductscan" id="scan" data-role="button">Scannen</a>
     </div>
   </div>
@@ -135,7 +144,7 @@ window.location.href =  "#tutorial";}
 			<h1 class="scannedtitle"></h1>
 			<h2>toegevoegd.</h2>
     	</center>
-    	<a data-transition="slide" href="#nieuwproducttype" data-role="button" data-theme="f"> Terug </a>
+    	<a data-transition="slide" href="#nieuwproductkeuze" data-role="button" data-theme="f"> Terug </a>
     </div>
   </div>
 </div> 
@@ -144,7 +153,7 @@ window.location.href =  "#tutorial";}
  
  <!--#############################################
 ###				Nieuw Product (handmatig)       ###
-#################################################-->
+#################################################
 <div data-role="page" id="nieuwproducttype">
   <div data-role="header">
     <a href="#nieuwproductkeuze" data-icon="arrow-l">Terug</a>
@@ -161,7 +170,7 @@ window.location.href =  "#tutorial";}
   </div>
 </div> 
  
-
+-->
 
 
 
@@ -186,7 +195,9 @@ window.location.href =  "#tutorial";}
 <div data-role="page" id="tutorial2" data-transition="slide">
   <div data-role="content">
     <center>	<p class="head_1 dark">Lijst</p>
-    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_main dark">
+    	<img src="css/tut1.png" style="width:50%;height:50%;" alt="">
+    </p> 
     <p class="head_content dark">Bekijk op het hoofdscherm al je producten in een oogwenk.</p>
   	</center>
     <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Je bent er bijna! >> </a>
@@ -196,7 +207,9 @@ window.location.href =  "#tutorial";}
 <div data-role="page" id="tutorial3" data-transition="slide">
   <div data-role="content">
     <center>	<p class="head_1 dark">Voeg producten toe</p>
-    <p class="head_main dark">PLAATJE</p> 
+    <p class="head_main dark">
+    	<img src="css/barcode.png" style="width:50%;height:50%;" alt="">
+    </p> 
     <p class="head_content dark">Voeg producten toe door ze te scannen.</p>
   	</center>
     <a data-transition="slide" class="button_start" onclick="firstTimeLogin()" data-role="button" data-theme="f"> Start de app! </a>
@@ -239,7 +252,7 @@ function onDeviceReady() {
     inventoryItems();
 }</script>
 
-<script>inventoryItems();            app.initialize();
+<script>inventoryItems(); listItems();            app.initialize();
 </script>
     
 

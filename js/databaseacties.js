@@ -14,10 +14,10 @@ db.transaction (function (transaction)
 		"beschrijving TEXT NOT NULL," +
 		"imageurl VARCHAR(255) NOT NULL," +
 		"hoeveelheid SMALLINT NOT NULL," +
-		"aantalkeerinlijst SMALLINT NOT NULL," +
+		"inlijst SMALLINT NOT NULL," +
 		"verversing SMALLINT NOT NULL," +
 		"totaalkeerververst SMALLINT NOT NULL," +
-		"houdbaarheid SMALLINT NOT NULL)"
+		"houdbaarheid SMALLINT NOT NULL)";
     transaction.executeSql (sql, undefined, function ()
     { 
       console.log ("Table created");
@@ -48,7 +48,45 @@ function allItems(){
     }, error);
   });
 }
-
+function createTable2(){
+db.transaction (function (transaction) 
+  {
+    var sql = 
+		"CREATE TABLE lijst " +
+        " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+        "naam VARCHAR(255) NOT NULL, " +
+		"hoeveel VARCHAR(255) NOT NULL, " + 
+        "idref VARCHAR(255) NOT NULL) ";
+    transaction.executeSql (sql, undefined, function ()
+    { 
+      console.log ("Table created");
+    }, error);
+  });
+};
+//////////////////////////////////
+// Krijg alle items///////////////
+//////////////////////////////////
+function allItems(){
+	db.transaction (function (transaction) 
+  {
+    var sql = "SELECT * FROM alleproducten ORDER BY hoeveelheid DESC"
+    transaction.executeSql (sql, undefined, function (transaction, result)
+    { 
+      if (result.rows.length)
+      {
+        for (var i = 0; i < result.rows.length; i++) 
+        {
+          console.log(result.rows.item (i));
+        }
+      }
+      else
+      {
+       console.log("Geen Items");
+      }
+      
+    }, error);
+  });
+}
 
 //////////////////////////////////
 // Maak lijst met items///////////
@@ -148,6 +186,7 @@ function changeInventory(plusminus, id, howmany){
 		    inventoryItems();
 			}*/
 				inventoryItems();
+				listItems();
 			}, error);
       }
       else
@@ -158,7 +197,44 @@ function changeInventory(plusminus, id, howmany){
     }, error);
   });
 }
+function changeList(plusminus, id, howmany){
+  if(!id){ id = -1}
+  if(!howmany){howmany = 1}
+  var final = 0;
+  db.transaction (function (transaction) 
+  {
+    var sql = "SELECT verversing FROM alleproducten WHERE id=" + id + ""; 
+    transaction.executeSql (sql, undefined, function (transaction, result)
+    { 
+      if (result.rows.length)
+	  {     var row = result.rows.item(0);
+			if(plusminus == "+"){
+			final = row.hoeveelheid + howmany;
+			} else if(plusminus == "-"){
+			final = row.hoeveelheid - howmany;}
+			//console.log("Final: " + final);
+	   		///console.log("Row.hoeveelheid: " + row.hoeveelheid);
 
+		  var sql = "UPDATE alleproducten SET verversing=" + final + " WHERE id=" + id; 
+			transaction.executeSql (sql, undefined, function (){
+			$('li.' + id + ' .lijstvoorraad span.getal').html(final);
+			
+			/*if(final <= 0){
+				$( "#errorgeenproduct" ).popup();
+				$( "#errorgeenproduct" ).popup( "open" );
+		    inventoryItems();
+			}*/
+				inventoryItems();
+			}, error);
+      }
+      else
+      {
+       alert("Fout, product niet gevonden");
+      }
+      
+    }, error);
+  });
+}
 
 function error (transaction, err) 
 {
@@ -181,14 +257,14 @@ function dropTable(sqlcode){
 function firstTimeLogin()
 {
 		createTable();
-  		
+  		createTable2();
 		// Flag the user no first time login
 		window.localStorage.setItem("loggedinbefore", true);
 		// Redirect the user to the main page
 		window.location.href = "#home";	
 }
 
-function nieuwProduct(naam,barcode,merk,beschrijving,imageurl,hoeveelheid,aantalkeerinlijst,verversing,totaalkeerververst,houdbaarheid){
+function nieuwProduct(naam,barcode,merk,beschrijving,imageurl,hoeveelheid,inlijst,verversing,totaalkeerververst,houdbaarheid){
 db.transaction (function (transaction) 
   {
     var sql = 
@@ -199,7 +275,7 @@ db.transaction (function (transaction)
 		"beschrijving ," +
 		"imageurl ," +
 		"hoeveelheid, " +
-		"aantalkeerinlijst ," +
+		"inlijst ," +
 		"verversing ," +
 		"totaalkeerververst ," +
 		"houdbaarheid)" +
@@ -210,7 +286,7 @@ db.transaction (function (transaction)
 		 "'" + beschrijving + "'," +
 		 "'" + imageurl + "'," +
 		 "'" + hoeveelheid + "'," +
-		 "'" + aantalkeerinlijst + "'," +
+		 "'" + inlijst + "'," +
 		 "'" + verversing + "'," +
 		 "'" + totaalkeerververst + "'," +
 		 "'" + houdbaarheid + "') ";
@@ -218,7 +294,7 @@ db.transaction (function (transaction)
     transaction.executeSql (sql, undefined, function ()
     { 
       console.log ("Product Toegevoegd");
-	$('.scannedttitle').html(naam);
+	$('.scannedtitle').html(naam);
 	$('.scannedimage').html("<img src='" + imageurl + "'>");
 	  inventoryItems();
     }, error);
@@ -285,6 +361,78 @@ function getCode(ean){
 	
 }
 
-	//
-	
-	//return u;
+function naarLijst(id){
+db.transaction (function (transaction) 
+  {
+	  var sql = "UPDATE alleproducten SET inlijst=1, verversing=1 WHERE id=" + id + ""; 
+			transaction.executeSql (sql, undefined, function (){
+			$('li.' + id + ' .lijstvoorraad span.getal').html("1");
+			
+			/*if(final <= 0){
+				$( "#errorgeenproduct" ).popup();
+				$( "#errorgeenproduct" ).popup( "open" );
+		    inventoryItems();
+			}*/
+				listItems();
+				
+			}, error);
+      
+  });
+}
+
+function listItems(){
+		db.transaction (function (transaction) 
+  {
+    var sql = "SELECT * FROM alleproducten WHERE hoeveelheid = 0";
+    transaction.executeSql (sql, undefined, function (transaction, result)
+    { 
+      if (result.rows.length)
+      {
+		var totalhtml = "";
+        for (var i = 0; i < result.rows.length; i++) 
+        {
+		  var row = result.rows.item(i);
+          var html = '<li background-size:contain; background-position:left; background-repeat:no-repeat;" class="'+ row.id + '">'+
+			 "<img src ='" +row.imageurl + "' class='nothumb'/>" +
+			  "<center>" +
+           "<div class='titel'>" +
+			   	"<span class='naam'>" +
+		  		row.naam +
+				"</span>" +
+		   "</div>" +
+			  "</center>" +
+           /*"<div class='houdbaarheid'>" +
+			   	"<center>" +
+			   		"<span class='top'><small>Houdbaar tot</small></span>" +
+					"<span class='getal'>" +
+					row.houdbaarheid +
+					"</span>" + 
+					"<span class='bottom'><small>nog " + 
+					row.houdbaarheid +
+		   " dagen</small></span>" +
+		   		"</center>" + 
+		   "</div>" +     */
+           "<span class='buttonspan'>" +
+			"<div class='addonebutton'><a data-role='button' onclick='" + 'changeHoeveelheid("+",' + row.id + ");' data-theme='g'>+</a></div>" +
+		   "<div class='hidden removeonebutton'><a data-role='button' onclick='" + 'changeList("+",' + row.id + ");' data-theme='d'>-</a></div>" +
+           "</span>" +
+           "<div class='clearfix'></div>" +
+       	   "</li>";
+			totalhtml = totalhtml + html;
+			/*console.log(i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i,i)
+			console.log(row.imageurl + " url");
+			console.log(row.naam + " naam");
+			console.log(row.hoeveelheid + " hoeveelheid");
+			console.log(row.houdbaarheid + " houdbaarheid");*/
+        }
+		
+	  $('ul.inventorycontainerlijst').html(totalhtml).trigger('create').listview('refresh');
+		
+      }
+      else
+      {
+       console.log("Geen Items hier");
+      }
+    }, error);
+  });
+}
