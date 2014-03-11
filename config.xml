@@ -24,14 +24,18 @@
 	<gap:plugin name="org.apache.cordova.file" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 
-	<access origin="*" />
     <preference name="phonegap-version" value="3.1.0" />
     <preference name="orientation"      value="default" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="true" />
     <preference name="webviewbounce"    value="false" />
 	<preference name="splashscreen" value="foo" />
-
+	<access origin="*" />
+	
+	<icon src="images/logo.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="xhdpi" />
 
 
 </widget>

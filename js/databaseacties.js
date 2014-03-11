@@ -181,10 +181,8 @@ function dropTable(sqlcode){
 function firstTimeLogin()
 {
 		createTable();
-		var deviceID = device.uuid;
-	    var nonce = "selloutink_" + device.uuid + Math.floor(Math.random() * 99999) + "";
+  		
 		// Flag the user no first time login
-		window.localStorage.setItem("loggedinbefore", true);
 		window.localStorage.setItem("nonce", nonce);
 		// Redirect the user to the main page
 		window.location.href = "#home";	
@@ -243,14 +241,16 @@ function getCode(ean){
       $.ajax({
           url: 'http://api.syndicateplus.com/v1/products/product/',
           type: 'GET',
-          dataType: 'json',
+          dataType: 'jsonp',
+		  crossDomain: true,
           success: function() { alert('hello!'); },
           error: function() { alert('boo!'); },
-          beforeSend: setHeader
+          beforeSend: function(xhr){$.mobile.loading('show'); setHeader(xhr); },
+		  complete: function(){$.mobile.loading('hide');}
         });
 
       function setHeader(xhr) {
-        xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
+       xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
       }
 }
 
