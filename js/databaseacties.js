@@ -183,7 +183,7 @@ function firstTimeLogin()
 		createTable();
   		
 		// Flag the user no first time login
-		window.localStorage.setItem("nonce", nonce);
+		window.localStorage.setItem("loggedinbefore", true);
 		// Redirect the user to the main page
 		window.location.href = "#home";	
 }
