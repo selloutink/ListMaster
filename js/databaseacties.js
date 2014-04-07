@@ -150,6 +150,8 @@ function inventoryItems(){
       else
       {
        console.log("Geen Items in de grote lijst");
+	   var totalhtml = ""; 	$('ul.inventorycontainer').html(totalhtml).trigger('create').listview('refresh');
+
       }
     }, error);
   });
@@ -432,6 +434,7 @@ function listItems(){
       else
       {
        console.log("Geen Items in de Boodschappenlijst");
+	   var totalhtml = ""; 	$('ul.inventorycontainer').html(totalhtml).trigger('create').listview('refresh');
       }
     }, error);
   });
