@@ -434,7 +434,7 @@ function listItems(){
       else
       {
        console.log("Geen Items in de Boodschappenlijst");
-	   var totalhtml = ""; 	$('ul.inventorycontainer').html(totalhtml).trigger('create').listview('refresh');
+	   var totalhtml = ""; 	$('ul.inventorycontainerlijst').html(totalhtml).trigger('create').listview('refresh');
       }
     }, error);
   });
