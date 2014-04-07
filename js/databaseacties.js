@@ -14,6 +14,7 @@ db.transaction (function (transaction)
 		"beschrijving TEXT NOT NULL," +
 		"imageurl VARCHAR(255) NOT NULL," +
 		"hoeveelheid SMALLINT NOT NULL," +
+<<<<<<< HEAD
 		"inlijst SMALLINT NOT NULL," +
 		"verversing SMALLINT NOT NULL," +
 		"totaalkeerververst SMALLINT NOT NULL," +
@@ -57,6 +58,12 @@ db.transaction (function (transaction)
         "naam VARCHAR(255) NOT NULL, " +
 		"hoeveel VARCHAR(255) NOT NULL, " + 
         "idref VARCHAR(255) NOT NULL) ";
+=======
+		"aantalkeerinlijst SMALLINT NOT NULL," +
+		"verversing SMALLINT NOT NULL," +
+		"totaalkeerververst SMALLINT NOT NULL," +
+		"houdbaarheid SMALLINT NOT NULL)"
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
     transaction.executeSql (sql, undefined, function ()
     { 
       console.log ("Table created");
@@ -88,6 +95,10 @@ function allItems(){
   });
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 //////////////////////////////////
 // Maak lijst met items///////////
 //////////////////////////////////
@@ -132,7 +143,11 @@ function inventoryItems(){
 		   "</div>" +     */
            "<span class='buttonspan'>" +
 			"<div class='addonebutton'><a data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
+<<<<<<< HEAD
 		    "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
+=======
+		   "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
            "</span>" +
            "<div class='clearfix'></div>" +
        	   "</li>";
@@ -149,9 +164,13 @@ function inventoryItems(){
       }
       else
       {
+<<<<<<< HEAD
        console.log("Geen Items in de grote lijst");
 	   var totalhtml = ""; 	$('ul.inventorycontainer').html(totalhtml).trigger('create').listview('refresh');
 
+=======
+       console.log("Geen Items hier");
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
       }
     }, error);
   });
@@ -188,7 +207,10 @@ function changeInventory(plusminus, id, howmany){
 		    inventoryItems();
 			}*/
 				inventoryItems();
+<<<<<<< HEAD
 				listItems();
+=======
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 			}, error);
       }
       else
@@ -199,6 +221,7 @@ function changeInventory(plusminus, id, howmany){
     }, error);
   });
 }
+<<<<<<< HEAD
 function changeList(plusminus, id, howmany){
   if(!id){ id = -1}
   if(!howmany){howmany = 1}
@@ -237,6 +260,9 @@ function changeList(plusminus, id, howmany){
     }, error);
   });
 }
+=======
+
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 
 function error (transaction, err) 
 {
@@ -259,14 +285,23 @@ function dropTable(sqlcode){
 function firstTimeLogin()
 {
 		createTable();
+<<<<<<< HEAD
   		createTable2();
 		// Flag the user no first time login
 		window.localStorage.setItem("loggedinbefore", true);
+=======
+		// Flag the user no first time login
+		window.localStorage.setItem("nonce", nonce);
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 		// Redirect the user to the main page
 		window.location.href = "#home";	
 }
 
+<<<<<<< HEAD
 function nieuwProduct(naam,barcode,merk,beschrijving,imageurl,hoeveelheid,inlijst,verversing,totaalkeerververst,houdbaarheid){
+=======
+function nieuwProduct(naam,barcode,merk,beschrijving,imageurl,hoeveelheid,aantalkeerinlijst,verversing,totaalkeerververst,houdbaarheid){
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 db.transaction (function (transaction) 
   {
     var sql = 
@@ -277,7 +312,11 @@ db.transaction (function (transaction)
 		"beschrijving ," +
 		"imageurl ," +
 		"hoeveelheid, " +
+<<<<<<< HEAD
 		"inlijst ," +
+=======
+		"aantalkeerinlijst ," +
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 		"verversing ," +
 		"totaalkeerververst ," +
 		"houdbaarheid)" +
@@ -288,7 +327,11 @@ db.transaction (function (transaction)
 		 "'" + beschrijving + "'," +
 		 "'" + imageurl + "'," +
 		 "'" + hoeveelheid + "'," +
+<<<<<<< HEAD
 		 "'" + inlijst + "'," +
+=======
+		 "'" + aantalkeerinlijst + "'," +
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 		 "'" + verversing + "'," +
 		 "'" + totaalkeerververst + "'," +
 		 "'" + houdbaarheid + "') ";
@@ -296,16 +339,23 @@ db.transaction (function (transaction)
     transaction.executeSql (sql, undefined, function ()
     { 
       console.log ("Product Toegevoegd");
+<<<<<<< HEAD
 	$('.scannedtitle').html(naam);
 	$('.scannedimage').html("<img src='" + imageurl + "'>");
 	  inventoryItems();
+=======
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
     }, error);
   });
 };
 
 
 function getCode(ean){
+<<<<<<< HEAD
 	/*ean = "8722700463115";
+=======
+	ean = "8722700463115";
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
 	var privatekey = "Um2TuBS8o_KYCFQ-YmCF6owOprQsNo4ki0qJ0jJJ7CtJmOyDTQhmAPjFHLiKxXC166beu80fqkg3Xcb8D__Yv1V05YO2kQgHAmWuS0Mccf7VZLkqpGhwNIZ5qkowkjRAl4r9eQZSLD9Ior_RbOA-WeHePLxS-2ShSRbglArYOuE=";
 	var httpverb = "GET";
 	var requesturl = "http://api.syndicateplus.com/v1/products/product";
@@ -322,6 +372,7 @@ function getCode(ean){
       $.ajax({
           url: 'http://api.syndicateplus.com/v1/products/product/',
           type: 'GET',
+<<<<<<< HEAD
           dataType: 'jsonp',
 		  crossDomain: true,
           success: function() { alert('hello!'); },
@@ -439,3 +490,19 @@ function listItems(){
     }, error);
   });
 }
+=======
+          dataType: 'json',
+          success: function() { alert('hello!'); },
+          error: function() { alert('boo!'); },
+          beforeSend: setHeader
+        });
+
+      function setHeader(xhr) {
+        xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
+      }
+}
+
+	//nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
+	
+	//return u;
+>>>>>>> 2da1460f90f1626a415c998afbbaf762b1af907d
