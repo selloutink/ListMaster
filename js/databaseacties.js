@@ -149,7 +149,7 @@ function inventoryItems(){
       }
       else
       {
-       console.log("Geen Items hier");
+       console.log("Geen Items in de grote lijst");
       }
     }, error);
   });
@@ -431,7 +431,7 @@ function listItems(){
       }
       else
       {
-       console.log("Geen Items hier");
+       console.log("Geen Items in de Boodschappenlijst");
       }
     }, error);
   });
