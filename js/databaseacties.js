@@ -132,7 +132,7 @@ function inventoryItems(){
 		   "</div>" +     */
            "<span class='buttonspan'>" +
 			"<div class='addonebutton'><a data-role='button' onclick='" + 'changeInventory("+",' + row.id + ");' data-theme='g'>+</a></div>" +
-		   "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
+		    "<div class='removeonebutton'><a data-role='button' onclick='" + 'changeInventory("-",' + row.id + ");' data-theme='d'>-</a></div>" +
            "</span>" +
            "<div class='clearfix'></div>" +
        	   "</li>";
@@ -426,7 +426,7 @@ function listItems(){
 			console.log(row.houdbaarheid + " houdbaarheid");*/
         }
 		
-	  $('ul.inventorycontainerlijst').html(totalhtml).trigger('create').listview('refresh');
+	  $('ul.inventorycontainerlijst').html(totalhtml).listview('refresh');
 		
       }
       else
