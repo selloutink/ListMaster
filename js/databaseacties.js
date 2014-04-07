@@ -428,7 +428,7 @@ function listItems(){
 			console.log(row.houdbaarheid + " houdbaarheid");*/
         }
 		
-	  $('ul.inventorycontainerlijst').html(totalhtml).listview('refresh');
+	  $('ul.inventorycontainerlijst').html(totalhtml).trigger('create').listview('refresh');
 		
       }
       else
