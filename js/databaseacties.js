@@ -453,17 +453,7 @@ function listItems(){
     }, error);
   });
 }
-          dataType: 'json',
-          success: function() { alert('hello!'); },
-          error: function() { alert('boo!'); },
-          beforeSend: setHeader
-        });
-
-      function setHeader(xhr) {
-        xhr.setRequestHeader('Authorization', 'Key="' + privatekey + '",Timestamp="' + timestamp + '",Nonce="' + nonce + '",Signature="' + str + '"');
-      }
-}
-
+      
 	//nieuwProduct(" " + u.Name + " ",ean,u.Brand.Name,u.Description,u.ImageUrl,1,0,0,0,0);
 	
 	//return u;
