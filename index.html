@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ListMaster </title>
+<!-- Laad jQuery Mobile bestanden -->
+<script type="text/javascript" src="jquery-mobile/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="jquery-mobile/jquery.mobile-1.3.1.min.js"></script>
+<link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.3.1.min.css">
+
+<!-- laad Database lijst -->
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" href="jquery-mobile/jquery.mobile.flatui.css">
+<script type="text/javascript" src="js/databaseacties.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<script type="text/javascript">
+var loggedinbefore = window.localStorage.getItem("loggedinbefore");
+if(!loggedinbefore){
+window.location.href =  "#tutorial";}
+</script>
+</head>
+<body>
+
+<!--######################################
+###				Hoofdpagina		       ###
+##########################################-->
+
+<div data-role="page" id="home">
+  <div data-role="content">
+	<center><img src="images/logo.png" width="200" height="200" alt="Logo"></center>
+  <center><p><h1>ListMaster</h1>Dé app die weet wat je in huis hebt</p></center>
+  
+  <a data-role="button" href="index.html#inhuis">Wat heb je in huis?</a>
+  <a data-role="button" href="#nieuwproductkeuze">Nieuwe producten toevoegen</a>
+  <a data-role="button" href="index.html#inlijst">Boodschappen doen</a>  
+  
+  </div>
+</div> <!-- einde pagina -->
+
+
+<!--#############################################
+###				Edit lijst                    ###
+#################################################-->
+
+
+
+<div data-role="page" id="itempage" data-transition="slide" >
+  <div data-role="header">
+    <h1>Bananen</h1>
+  </div>
+
+  <div data-role="content">
+    <h1>Bananen </h1>
+    <p>Je hebt <b>5 </b> Bananen in je kast.</p>
+    <button>Meer</button>
+    <button>Minder</button>
+    
+    <hr/>
+    <p>Je bananen zijn goed tot <b> 15 februari </b></p>
+  </div>
+
+  <div data-position="fixed" data-role="footer">
+    <h1>Footer Text</h1>
+  </div>
+</div> 
+
+
+
+
+
+
+
+<!--###########################################################
+####                    In Huis                           #####
+###############################################################-->
+
+<div data-role="page" id="inhuis">
+<div data-role="header" data-theme="a">
+  	<a href="#home" data-icon="arrow-l">Terug</a>
+  	<h1>In huis</h1>
+  </div>
+  
+  <div data-role="content">
+  	<ul class="inventorycontainer" data-role="listview">
+      <!-- Hier worden de inhuis producten geprint -->
+	</ul>
+  </div>
+ </div>
+ 
+ <div data-role="page" id="inlijst">
+<div data-role="header" data-theme="a">
+  	<a href="#home" data-icon="arrow-l">Terug</a>
+  	<h1>Boodschappenlijst</h1>
+  </div>
+  
+  <div data-role="content">
+  	<ul class="inventorycontainerlijst" data-role="listview">
+      <!-- Hier worden de inlijst producten geprint -->
+	</ul>
+  </div>
+ </div>
+ 
+ 
+ 
+<!--#############################################
+###				Nieuw Product (methode)       ###
+#################################################-->
+<div data-role="page" id="nieuwproductkeuze">
+  <div data-role="header">
+    <a href="#home" data-icon="arrow-l">Terug</a>
+    <h1>Nieuw Product</h1>
+  </div>
+	
+  <div data-role="content">
+    <h2>Een nieuw product toevoegen</h2>
+    <!--<p>Een product al een keer ingevoerd, maar een tijdje niet gekocht?</p>
+    <a href="#nieuwproductgeschiedenis" data-role="button">Bekijk de geschiedenis</a>
+    <hr>
+    <div> -->
+    <p>Klik hieronder om te scannen. Je product wordt automatisch opgezocht in de database. <small>Mede mogelijkgemaakt door SyndicatePlus</small></p>
+ <!--   <a href="#nieuwproducttype" data-role="button">Handmatig</a>
+    <center><small>of</small></center> -->
+    <a href="#nieuwproductscan" id="scan" data-role="button">Scannen</a>
+    </div>
+  </div>
+
+	</div> 
+</div>
+ 
+<!--#############################################
+###				Nieuw Product (scannen)       ###
+#################################################-->
+<div data-role="page" id="nieuwproductscan">
+  <div data-role="header">
+    <a href="#nieuwproductkeuze" data-icon="arrow-l">Terug</a>
+    <h1>Scan Product</h1>
+  </div>
+
+  <div data-role="content">
+    <div class="scannedcontent">
+    	<center>
+			<div class="scannedimage"></div>    	
+			<h1 class="scannedtitle"></h1>
+			<h2>Product toegevoegd.</h2>
+    	</center>
+    	<a data-transition="slide" href="#nieuwproductkeuze" data-role="button" data-theme="f"> Terug </a>
+    </div>
+  </div>
+</div> 
+ 
+ 
+ 
+ <!--#############################################
+###				Nieuw Product (handmatig)       ###
+#################################################
+<div data-role="page" id="nieuwproducttype">
+  <div data-role="header">
+    <a href="#nieuwproductkeuze" data-icon="arrow-l">Terug</a>
+    <h1>Scan Product</h1>
+  </div>
+	
+  <div data-role="content">
+    <h2>Handmatig invullen</h2>
+    <p>Vul hieronder de 13-cijferige streepjescode in. Ze zien er als volgt uit:</p>
+    <center><h3 style="display:inline;"> 87 227004 63115 </h3><small style="display:inline;">(Calve pindakaas)</small></center>
+    
+   <hr>
+   <input type="number" placeholder="Vul hier de streepjescode in">
+  </div>
+</div> 
+ 
+-->
+
+
+
+
+
+<!--######################################
+###				Tutorials   	       ###
+##########################################-->
+<div data-role="page" id="tutorial">
+
+  <div data-role="content">
+    <center><p class="head_1">Welkom bij </p>
+    <p class="head_main">ListMaster</p> 
+    <p class="head_content">De assisent voor je boodschappen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial2" data-role="button" data-theme="f"> Ga verder >> </a>
+  </div>
+  
+    
+</div>
+
+<div data-role="page" id="tutorial2" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Lijst</p>
+    <p class="head_main dark">
+    	<img src="css/tut1.png" style="width:50%;height:50%;" alt="">
+    </p> 
+    <p class="head_content dark">Bekijk op het hoofdscherm al je producten in een oogwenk.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" href="#tutorial3" data-role="button" data-theme="f"> Je bent er bijna! >> </a>
+  </div>
+</div> 
+
+<div data-role="page" id="tutorial3" data-transition="slide">
+  <div data-role="content">
+    <center>	<p class="head_1 dark">Voeg producten toe</p>
+    <p class="head_main dark">
+    	<img src="css/barcode.png" style="width:50%;height:50%;" alt="">
+    </p> 
+    <p class="head_content dark">Voeg producten toe door ze te scannen.</p>
+  	</center>
+    <a data-transition="slide" class="button_start" onclick="firstTimeLogin()" data-role="button" href="#home" data-theme="f"> Start de app! </a>
+  </div>
+</div> 
+
+
+<!--###########################
+##### ERRORS ##################
+###############################-->
+<!-- <div data-role="popup" data-theme="a" id="errorgeenproduct">	
+  <div data-role="header">
+  	<h1>0 stuks over</h1>
+  </div>
+  <div data-role="content">
+    <center><h2>Op het boodschappenlijstje zetten?</h2>
+    <p>Wil je dat dit product in je boodschappenlijstje komt?</p></center>
+	<div class="inline">    	
+    	<a data-role="button" data-theme="g" href="" onclick="return true; $( '#errorgeenproduct' ).popup( 'close' );">Ja</a>
+    	<a data-role="button" data-theme="d" href="">Nee</a>
+    	<a data-role="button" data-theme="f" href="">Annuleren</a>
+    </div>
+  </div>
+</div> -->
+ 
+		
+		
+		
+<!-- scripts -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="barcodescanner.js"></script>
+<script type="text/javascript" src="js/scan.js"></script>
+ <!-- eigen code -->
+ 
+<script>document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    // Now safe to use the PhoneGap API
+    window.plugin.statusbarOverlay.hide();
+    inventoryItems();
+}</script>
+
+<script>inventoryItems(); listItems();            app.initialize();
+</script>
+    
+
+    </body>
+</html>
+
+
+<!--
+<a href="#additem" data-position="fixed" data-rel="popup" data-inline="false" data-transition="slideup" data-position-to="origin"><span><div data-role="footer" data-position="fixed" data-theme="d"><p class="addsign"><center>+ voeg producten toe</center> </p></div></span></a>
+ 
+  <div data-role="popup" id="additem">  
+    <div data-role="content">
+        <div data-role="controlgroup" data-type="horizontal">
+        <a data-role="button" id="startScan">Scan</a>
+        <a data-role="button" href="#lijstpage">Handmatig</a>
+    </div> 
+  </div>
+
