@@ -1,4 +1,0 @@
-ListMaster
-==========
-
-ListMaster shoppinglist app

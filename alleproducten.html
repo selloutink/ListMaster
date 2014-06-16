@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ListMaster - Alle Producten</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ListMaster - Sellout Ink.</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li class="active"><a href="alleproducten.html">Alle Producten</a></li>
+            <li><a href="boodschappenlijst.html">Boodschappenlijst</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div> <!-- end navbar-collapse -->
+      </div> <!-- end container-fluid -->
+    </div> <!-- end navbar -->
+    <div class="pusher"></div>
+<div class="container-fluid">
+  <div class="row">
+    <!-- INHOUD DAADWERKELIJKE SITE -->
+    <div class="col-md-12">          <h1>Alle producten</h1>
+</div>
+        <div class="col-md-2">
+          <a class="btn btn-default" href="">Voeg artikelen toe »</a> <br>
+          <a class="btn btn-default" href="">Lijst afdrukken »</a>
+          <input type="text" placeholder="Product">
+
+        </div>
+        <div id="productenlijst" class="col-md-10">
+            <img src="img/loading.gif" alt="" class="loading">
+            <p class="loadinfo">Producten aan het laden...</p>
+        </div>
+   </div>
+
+</div>
+
+<div class="modal fade" id="editProduct" role="dialog" aria-labelledby="editProductLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Pas een product aan</h4>
+      </div>
+      <div class="modal-body">
+        <img class="imgurlimg" width='100' height='100' src=""> <h1 class="productname">Product!</h1>
+        <label>Afbeeldingsurl</label> <input type="text" class="imgurl"/>  <br>
+        <label>Naam</label> <input type="text" class="naam"/> <br>
+        <label>Merk</label> <input type="text" class="merk"/> <br>
+        <label>Prijs</label> <input type="text" class="prijs"/> <br>
+        <hr>
+        <label>Hoeveelheid in voorraad</label><input type="number" class="invoorraad"/><br>
+        <label>Hoeveelheid op boodschappenlijst</label><input type="number" class="inboodschappenlijst"/> <br>
+        <hr>
+        <label>EAN13 code</label> <input type="text" class="ean"/> <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren </button>
+        <button type="button" class="btn btn-success" id="confirm"><i class='glyphicon glyphicon-ok'></i> Pas aan</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Confirm Delete -->
+<div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Delete Parmanently</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure about this ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren </button>
+        <button type="button" class="btn btn-danger" id="confirm"><i class='glyphicon glyphicon-trash'></i> Verwijder product</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/pouchdb.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+    var gui = require('nw.gui'); 
+    var win = gui.Window.get();
+    toonProducten();
+
+        // ConfirmDelete
+  $('#confirmDelete').on('show.bs.modal', function (e) {
+      $message = $(e.relatedTarget).attr('data-message');
+      $(this).find('.modal-body p').text($message);
+      $title = $(e.relatedTarget).attr('data-title');
+      $(this).find('.modal-title').text($title);
+      id = $(e.relatedTarget).attr('data-id');
+
+      // Pass form reference to modal for submission on yes/ok
+      var form = $(e.relatedTarget).closest('form');
+      $(this).find('.modal-footer #confirm').data('form', form);
+  });
+
+  <!-- Form confirm (yes/ok) handler, submits form -->
+  $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
+      verwijderproduct(id);
+      toonProducten();
+
+      $('#confirmDelete').modal('hide');
+      $('.modal-backdrop').remove();
+  });
+
+
+  //Pasaan
+  $('#editProduct').on('show.bs.modal', function (e) {
+      id = $(e.relatedTarget).attr('data-id');
+      db.get(id, function(err, retrieved) {
+      $(".naam").val(retrieved.naam);
+      $(".invoorraad").val(retrieved.hoeveelheid);
+      $(".merk").val(retrieved.merk);
+      $(".inboodschappenlijst").val(retrieved.boodschappenhoeveelheid);
+      $(".prijs").val(retrieved.prijs);
+      $(".imgurl").val(retrieved.imgurl);
+      $(".productname").html(retrieved.naam);      
+      $(".imgurlimg").attr("src", retrieved.imgurl);
+      $(".ean").val(retrieved.eancode);
+
+      });
+    
+      // Pass form reference to modal for submission on yes/ok
+      var form = $(e.relatedTarget).closest('form');
+      $(this).find('.modal-footer #confirm').data('form', form);
+  });
+
+  <!-- Form confirm (yes/ok) handler, submits form -->
+  $('#editProduct').find('.modal-footer #confirm').on('click', function(){
+      var naam = $(".naam").val();
+      var invoorraad = Number($(".invoorraad").val());
+      var merk = $(".merk").val();
+      var boodschappenhoeveelheid = Number($(".inboodschappenlijst").val());
+      var prijs = Number($(".prijs").val());
+      var imgurl = $(".imgurl").val();
+      var eancode = $(".ean").val();
+
+      db.get(id, function(err, retrieved){
+      db.put({
+      _id: retrieved._id,
+      _rev: retrieved._rev,
+      naam: naam,
+      hoeveelheid: invoorraad,
+      merk: merk,
+      boodschappenhoeveelheid: boodschappenhoeveelheid,
+      prijs: prijs,
+      imgurl: imgurl,
+      eancode: eancode,
+      winkelid: retrieved.winkelid
+      }, id, retrieved._rev, function(err, response) {});toonProducten();});
+
+      $('#editProduct').modal('hide');
+      $('.modal-backdrop').remove();
+  });
+    </script>
+    <script src="js/syndicateplus.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+
+  
+
+</body></html>
